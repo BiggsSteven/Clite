@@ -1,0 +1,28 @@
+Begin parsing... programs/evenodd.cpp
+
+Program (abstract syntax): 
+  Declarations: 
+    Declarations = {<n, int>, <result, int>}
+  Block: 
+    Assignment: 
+      Variable: n
+      IntValue: 10
+    Conditional: 
+      Binary: 
+        Operator: ==
+        Binary: 
+          Operator: %
+          Variable: n
+          IntValue: 2
+        IntValue: 0
+      Assignment: 
+        Variable: result
+        IntValue: 0
+      Assignment: 
+        Variable: result
+        IntValue: 1
+
+Begin type checking...
+
+Type map:
+{ <result, int>, <n, int> }
