@@ -1,5 +1,9 @@
 // a first program with
 // two comment lines
 int main() {
-	if (x > 0 && !y) z = true;
+    char c;
+    int i;
+	i = -5;
+    c = 'h';
+    i = c + 3;	// implicit int(c)
 } // main
