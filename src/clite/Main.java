@@ -13,10 +13,10 @@ public class Main {
         Program prog = parser.program();
         prog.display();      // display abstract syntax tree
 
-        System.out.println("\nBegin type checking...");
-        System.out.println("\nType map:");
-        TypeMap map = StaticTypeCheck.typing(prog.decpart);
-        map.display();
-        StaticTypeCheck.V(prog);
+//        System.out.println("\nBegin type checking...");
+//        System.out.println("\nType map:");
+//        TypeMap map = StaticTypeCheck.typing(prog.decpart);
+//        map.display();
+//        StaticTypeCheck.V(prog);
     }
 }

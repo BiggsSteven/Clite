@@ -7,12 +7,12 @@ package clite;
 
 import java.util.*;
 
-public class TypeMap extends HashMap<Variable, Type> {
+public class TypeMap extends HashMap<VariableRef, Type> {
 
   public void display () {
     System.out.print("{ ");
     String sep = "";
-    for (Variable key : keySet() ) {
+    for (VariableRef key : keySet() ) {
         System.out.print(sep + "<" + key + ", " + get(key).getId() + ">");
         sep = ", ";
     }

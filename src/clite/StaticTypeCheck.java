@@ -9,7 +9,7 @@ package clite;
 
 public class StaticTypeCheck {
 
-public static TypeMap typing (Declarations d) {
+    public static TypeMap typing (Declarations d) {
         TypeMap map = new TypeMap();
         for (Declaration di : d)
             if (di instanceof VariableDecl) {
