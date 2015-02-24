@@ -44,103 +44,13 @@ public class StaticTypeCheck {
         V (p.body, typing (p.decpart));
     }
 
-    public static Type typeOf (Expression e, TypeMap tm) {
-        if (e instanceof Value) return ((Value)e).type;
-        if (e instanceof Variable) {
-            Variable v = (Variable)e;
-            check (tm.containsKey(v), "undefined variable: " + v);
-            return (Type) tm.get(v);
-        }
-        if (e instanceof ArrayRef) {
-            ArrayRef a = (ArrayRef)e;
-            check (tm.containsKey(a), "undefined array reference: " + a);
-            return (Type) tm.get(a);
-        }
-        if (e instanceof Binary) {
-            Binary b = (Binary)e;
-            if (b.op.ArithmeticOp( ))
-                if (typeOf(b.term1,tm)== Type.FLOAT)
-                    return (Type.FLOAT);
-                else return (Type.INT);
-            if (b.op.RelationalOp( ) || b.op.BooleanOp( ))
-                return (Type.BOOL);
-        }
-        if (e instanceof Unary) {
-            Unary u = (Unary)e;
-            if (u.op.NotOp( ))        return (Type.BOOL);
-            else if (u.op.NegateOp( )) return typeOf(u.term,tm);
-            else if (u.op.intOp( ))    return (Type.INT);
-            else if (u.op.floatOp( )) return (Type.FLOAT);
-            else if (u.op.charOp( ))  return (Type.CHAR);
-        }
-        throw new IllegalArgumentException("should never reach here");
-    }
-
-    public static void V (Expression e, TypeMap tm) {
-        if (e instanceof Value)
-            return;
-        if (e instanceof Variable) {
-            Variable v = (Variable)e;
-            check( tm.containsKey(v)
-                   , "undeclared variable: " + v);
-            return;
-        }
-        if (e instanceof ArrayRef) {
-            ArrayRef a = (ArrayRef)e;
-            check( tm.containsKey(a)
-                   , "undefined array reference: " + a);
-            return;
-        }
-        if (e instanceof Binary) {
-            Binary b = (Binary) e;
-            Type typ1 = typeOf(b.term1, tm);
-            Type typ2 = typeOf(b.term2, tm);
-            V (b.term1, tm);
-            V (b.term2, tm);
-            if (b.op.ArithmeticOp( ))
-                check( typ1 == typ2 &&
-                       (typ1 == Type.INT || typ1 == Type.FLOAT)
-                       , "type error for " + b.op);
-            else if (b.op.RelationalOp( ))
-                check( typ1 == typ2 , "type error for " + b.op);
-            else if (b.op.BooleanOp( ))
-                check( typ1 == Type.BOOL && typ2 == Type.BOOL,
-                       b.op + ": non-bool operand");
-            else
-                throw new IllegalArgumentException("should never reach here");
-            return;
-        }
-        if (e instanceof Unary) {
-            Unary u = (Unary) e;
-            Type typ1 = typeOf(u.term, tm);
-            V(u.term, tm);
-            if (u.op.equals(Operator.NOT))
-                check( typ1 == Type.BOOL , "! has non-bool operand");
-            else if (u.op.equals(Operator.NEG))
-                check( typ1 == Type.INT || typ1 == Type.FLOAT
-                       , "Unary - has non-int/float operand");
-            else if (u.op.equals(Operator.FLOAT))
-                check( typ1== Type.INT, "float() has non-int operand");
-            else if (u.op.equals(Operator.CHAR))
-                check( typ1== Type.INT , "char() has non-int operand");
-            else if (u.op.equals(Operator.INT))
-                check( typ1== Type.FLOAT || typ1== Type.CHAR
-                       , "int() has non-float/char operand");
-            else
-                throw new IllegalArgumentException("should never reach here");
-            return;
-        }
-        throw new IllegalArgumentException("should never reach here");
-    }
-
     public static void V (Statement s, TypeMap tm) {
         if ( s == null )
             throw new IllegalArgumentException( "AST error: null statement");
         if (s instanceof Skip) return;
         if (s instanceof Assignment) {
             Assignment a = (Assignment)s;
-            check( tm.containsKey(a.target)
-                   , " undefined target in assignment: " + a.target);
+            V(a.target, tm);
             V(a.source, tm);
             Type ttype = (Type)tm.get(a.target);
             Type srctype = typeOf(a.source, tm);
@@ -179,6 +89,99 @@ public class StaticTypeCheck {
             for (int j=0; j < b.members.size(); j++)
                 V((Statement)(b.members.get(j)), tm);
             return;
+        }
+        throw new IllegalArgumentException("should never reach here");
+    }
+    
+    public static void V (Expression e, TypeMap tm) {
+        if (e instanceof Value)
+            return;
+        if (e instanceof Variable) {
+            Variable v = (Variable)e;
+            check( tm.containsKey(v)
+                   , "undeclared variable: " + v);
+            return;
+        }
+        if (e instanceof ArrayRef) {
+            ArrayRef a = (ArrayRef)e;
+            check( tm.containsKey(a), "undefined array reference: " + a);
+            check( typeOf(a.index, tm) == Type.INT, "invalid array reference: " + a);
+            return;
+        }
+        if (e instanceof Binary) {
+            Binary b = (Binary) e;
+            Type typ1 = typeOf(b.term1, tm);
+            Type typ2 = typeOf(b.term2, tm);
+            V (b.term1, tm);
+            V (b.term2, tm);
+            if (b.op.ArithmeticOp( ))
+                if (b.op.equals(Operator.MOD))
+                    check(typ1 == typ2 && typ1 == Type.INT
+                       , "type error for " + b.op);
+                else
+                    check( typ1 == typ2 &&
+                       (typ1 == Type.INT || typ1 == Type.FLOAT)
+                       , "type error for " + b.op);
+            else if (b.op.RelationalOp( ))
+                check( typ1 == typ2 , "type error for " + b.op);
+            else if (b.op.BooleanOp( ))
+                check( typ1 == Type.BOOL && typ2 == Type.BOOL,
+                       b.op + ": non-bool operand");
+            else
+                throw new IllegalArgumentException("should never reach here");
+            return;
+        }
+        if (e instanceof Unary) {
+            Unary u = (Unary) e;
+            Type typ1 = typeOf(u.term, tm);
+            V(u.term, tm);
+            if (u.op.NotOp())
+                check( typ1 == Type.BOOL , "! has non-bool operand");
+            else if (u.op.NegateOp())
+                check( typ1 == Type.INT || typ1 == Type.FLOAT
+                       , "Unary - has non-int/float operand");
+            else if (u.op.floatOp())
+                check( typ1== Type.INT, "float() has non-int operand");
+            else if (u.op.charOp())
+                check( typ1== Type.INT , "char() has non-int operand");
+            else if (u.op.intOp())
+                check( typ1== Type.FLOAT || typ1== Type.CHAR
+                       , "int() has non-float/char operand");
+            else
+                throw new IllegalArgumentException("should never reach here");
+            return;
+        }
+        throw new IllegalArgumentException("should never reach here");
+    }
+
+    public static Type typeOf (Expression e, TypeMap tm) {
+        if (e instanceof Value) return ((Value)e).type;
+        if (e instanceof Variable) {
+            Variable v = (Variable)e;
+            check (tm.containsKey(v), "undefined variable: " + v);
+            return (Type) tm.get(v);
+        }
+        if (e instanceof ArrayRef) {
+            ArrayRef a = (ArrayRef)e;
+            check (tm.containsKey(a), "undefined array reference: " + a);
+            return (Type) tm.get(a);
+        }
+        if (e instanceof Binary) {
+            Binary b = (Binary)e;
+            if (b.op.ArithmeticOp( ))
+                if (typeOf(b.term1,tm)== Type.FLOAT)
+                    return (Type.FLOAT);
+                else return (Type.INT);
+            if (b.op.RelationalOp( ) || b.op.BooleanOp( ))
+                return (Type.BOOL);
+        }
+        if (e instanceof Unary) {
+            Unary u = (Unary)e;
+            if (u.op.NotOp( ))        return (Type.BOOL);
+            else if (u.op.NegateOp( )) return typeOf(u.term,tm);
+            else if (u.op.intOp( ))    return (Type.INT);
+            else if (u.op.floatOp( )) return (Type.FLOAT);
+            else if (u.op.charOp( ))  return (Type.CHAR);
         }
         throw new IllegalArgumentException("should never reach here");
     }

@@ -297,7 +297,7 @@ class Variable extends VariableRef {
 class ArrayRef extends VariableRef {
     // ArrayRef = String id; Expression index
 //    private String id;
-    private Expression index;
+    Expression index;
 
     ArrayRef (String s, Expression e) { id = s; index = e; }
 //
@@ -520,11 +520,12 @@ class Operator {
     final static String INT_NE = "INT!=";
     final static String INT_GT = "INT>";
     final static String INT_GE = "INT>=";
-    // ArithmeticOp = + | - | * | / 
+    // ArithmeticOp = + | - | * | / | %
     final static String INT_PLUS = "INT+";
     final static String INT_MINUS = "INT-";
     final static String INT_TIMES = "INT*";
     final static String INT_DIV = "INT/";
+    final static String INT_MOD = "INT%";
     // UnaryOp = !
     final static String INT_NEG = "INTNEG";
     // RelationalOp = < | <= | == | != | >= | >
@@ -534,11 +535,12 @@ class Operator {
     final static String FLOAT_NE = "FLOAT!=";
     final static String FLOAT_GT = "FLOAT>";
     final static String FLOAT_GE = "FLOAT>=";
-    // ArithmeticOp = + | - | * | /
+    // ArithmeticOp = + | - | * | / | %
     final static String FLOAT_PLUS = "FLOAT+";
     final static String FLOAT_MINUS = "FLOAT-";
     final static String FLOAT_TIMES = "FLOAT*";
     final static String FLOAT_DIV = "FLOAT/";
+    final static String FLOAT_MOD = "FLOAT%";
     // UnaryOp = !
     final static String FLOAT_NEG = "FLOATNEG";
     // RelationalOp = < | <= | == | != | >= | >
@@ -585,7 +587,7 @@ class Operator {
 
     final static String intMap[ ] [ ] = {
         {PLUS, INT_PLUS}, {MINUS, INT_MINUS},
-        {TIMES, INT_TIMES}, {DIV, INT_DIV},
+        {TIMES, INT_TIMES}, {DIV, INT_DIV}, {MOD, INT_MOD},
         {EQ, INT_EQ}, {NE, INT_NE}, {LT, INT_LT},
         {LE, INT_LE}, {GT, INT_GT}, {GE, INT_GE},
         {NEG, INT_NEG}, {FLOAT, I2F}, {CHAR, I2C}
@@ -593,7 +595,7 @@ class Operator {
 
     final static String floatMap[ ] [ ] = {
         {PLUS, FLOAT_PLUS}, {MINUS, FLOAT_MINUS},
-        {TIMES, FLOAT_TIMES}, {DIV, FLOAT_DIV},
+        {TIMES, FLOAT_TIMES}, {DIV, FLOAT_DIV}, {MOD, FLOAT_MOD},
         {EQ, FLOAT_EQ}, {NE, FLOAT_NE}, {LT, FLOAT_LT},
         {LE, FLOAT_LE}, {GT, FLOAT_GT}, {GE, FLOAT_GE},
         {NEG, FLOAT_NEG}, {INT, F2I}

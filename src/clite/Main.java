@@ -13,10 +13,14 @@ public class Main {
         Program prog = parser.program();
         prog.display();      // display abstract syntax tree
 
-//        System.out.println("\nBegin type checking...");
-//        System.out.println("\nType map:");
-//        TypeMap map = StaticTypeCheck.typing(prog.decpart);
-//        map.display();
+        System.out.println("\nBegin type checking...");
+        System.out.println("\nType map:");
+        TypeMap map = StaticTypeCheck.typing(prog.decpart);
+        map.display();
 //        StaticTypeCheck.V(prog);
+        Program out = TypeTransformer.T(prog, map);
+        System.out.println("\nTransformed Abstract Syntax Tree");
+        out.display();      // display transformed abstract syntax tree
+        StaticTypeCheck.V(out); // type check the transformed AST
     }
 }
