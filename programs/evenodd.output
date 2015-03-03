@@ -51,3 +51,8 @@ Program (abstract syntax):
       Assignment: 
         Variable: result
         IntValue: 1
+
+Begin interpreting...programs/evenodd.cpp
+
+Final State
+{ <result, 0>, <n, 10> }

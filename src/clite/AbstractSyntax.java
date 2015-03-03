@@ -571,19 +571,29 @@ class Operator {
     public boolean equals(Object obj) { return val.equals(obj); }
 
     boolean BooleanOp ( ) { return val.equals(AND) || val.equals(OR); }
-    boolean RelationalOp ( ) {
-        return val.equals(LT) || val.equals(LE) || val.equals(EQ)
-            || val.equals(NE) || val.equals(GT) || val.equals(GE);
+     boolean RelationalOp ( ) {
+//        return val.equals(LT) || val.equals(LE) || val.equals(EQ)
+//            || val.equals(NE) || val.equals(GT) || val.equals(GE);
+        return val.contains(LT) || val.contains(LE) || val.contains(EQ)
+            || val.contains(NE) || val.contains(GT) || val.contains(GE);
     }
     boolean ArithmeticOp ( ) {
-        return val.equals(PLUS) || val.equals(MINUS)
-            || val.equals(TIMES) || val.equals(DIV) || val.equals(MOD);
+//        return val.equals(PLUS) || val.equals(MINUS)
+//            || val.equals(TIMES) || val.equals(DIV) || val.equals(MOD);
+        return val.contains(PLUS) || val.contains(MINUS)
+            || val.contains(TIMES) || val.contains(DIV) || val.contains(MOD);
     }
+    boolean ModOp ( ) { return val.contains(MOD) ; }
     boolean NotOp ( ) { return val.equals(NOT) ; }
-    boolean NegateOp ( ) { return val.equals(NEG) ; }
+//    boolean NegateOp ( ) { return val.equals(NEG) ; }
+    boolean NegateOp ( ) { return val.contains(NEG) || val.contains(NEG.toUpperCase()) ; }
     boolean intOp ( ) { return val.equals(INT); }
     boolean floatOp ( ) { return val.equals(FLOAT); }
     boolean charOp ( ) { return val.equals(CHAR); }
+    boolean I2FOp ( ) { return val.equals(I2F); }
+    boolean F2IOp ( ) { return val.equals(F2I); }
+    boolean C2IOp ( ) { return val.equals(C2I); }
+    boolean I2COp ( ) { return val.equals(I2C); }
 
     final static String intMap[ ] [ ] = {
         {PLUS, INT_PLUS}, {MINUS, INT_MINUS},

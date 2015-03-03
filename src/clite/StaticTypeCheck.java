@@ -115,7 +115,7 @@ public class StaticTypeCheck {
             V (b.term1, tm);
             V (b.term2, tm);
             if (b.op.ArithmeticOp( ))
-                if (b.op.equals(Operator.MOD))
+                if (b.op.ModOp())
                     check(typ1 == typ2 && typ1 == Type.INT
                        , "type error for " + b.op);
                 else
@@ -147,6 +147,14 @@ public class StaticTypeCheck {
             else if (u.op.intOp())
                 check( typ1== Type.FLOAT || typ1== Type.CHAR
                        , "int() has non-float/char operand");
+            else if (u.op.I2FOp())
+                check( typ1 == Type.INT, "I2F has non-int operand");
+            else if (u.op.F2IOp())
+                check( typ1 == Type.FLOAT, "F2I has non-float operand");
+            else if (u.op.C2IOp())
+                check( typ1 == Type.CHAR, "C2I has non-char operand");
+            else if (u.op.I2COp())
+                check( typ1 == Type.INT, "I2C has non-int operand");
             else
                 throw new IllegalArgumentException("should never reach here");
             return;
@@ -182,6 +190,10 @@ public class StaticTypeCheck {
             else if (u.op.intOp( ))    return (Type.INT);
             else if (u.op.floatOp( )) return (Type.FLOAT);
             else if (u.op.charOp( ))  return (Type.CHAR);
+            else if (u.op.I2FOp())    return (Type.FLOAT);
+            else if (u.op.F2IOp())    return (Type.INT);
+            else if (u.op.C2IOp())    return (Type.INT);
+            else if (u.op.I2COp())    return (Type.CHAR);
         }
         throw new IllegalArgumentException("should never reach here");
     }
