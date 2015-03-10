@@ -33,6 +33,17 @@ public class State extends HashMap<VariableRef,ArrayList<Value>> {
         return this;
     }
 
+    public State update(VariableRef key, ArrayList<Value> val) {
+            if (key instanceof ArrayRef) {
+                    put(key, val);
+            }
+            else if (key instanceof Variable) {
+                    put(key, val);
+            } else 
+                    throw new IllegalArgumentException("not an array reference");
+            return this;    	
+    }
+    
     public State update (State t) {
         for (VariableRef key : t.keySet( ))
             put(key, t.get(key));

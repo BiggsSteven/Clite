@@ -103,7 +103,7 @@ public class Semantics {
     }
     
     Value applyBinary(Operator op, Value v1, Value v2){
-        StaticTypeCheck.check(!v1.isUndef() && ! v2.isUndef(), "reference to undef value");
+        check( ! v1.isUndef( ) && ! v2.isUndef( ), "reference to undef value");
         if(op.val.equals(Operator.INT_PLUS))
             return new IntValue(v1.intValue() + v2.intValue());
         if(op.val.equals(Operator.INT_MINUS))
@@ -160,28 +160,43 @@ public class Semantics {
             return new BoolValue(v1.charValue() >= v2.charValue());
         if (op.val.equals(Operator.CHAR_GT))
             return new BoolValue(v1.charValue() > v2.charValue());
+        
+        // BOOL operators
+        // Relational operations <, <=, >, >= are legal in C (and hence CLite)
+        // as booleans are stored as integers in it; illegal in modern languages
         if (op.val.equals(Operator.BOOL_LT))
-            return new BoolValue(v1.intValue() < v2.intValue());
+            throw new IllegalArgumentException(op 
+                    + " operation inappropriate with boolean operands");
+//            return new BoolValue(v1.intValue( ) < v2.intValue( ));
         if (op.val.equals(Operator.BOOL_LE))
-            return new BoolValue(v1.intValue() <= v2.intValue());
+            throw new IllegalArgumentException(op 
+                    + " operation inappropriate with boolean operands");
+//            return new BoolValue(v1.intValue( ) <= v2.intValue( ));
         if (op.val.equals(Operator.BOOL_EQ))
-            return new BoolValue(v1.boolValue() == v2.boolValue());
+            return new BoolValue(v1.boolValue( ) == v2.boolValue( ));
         if (op.val.equals(Operator.BOOL_NE))
-            return new BoolValue(v1.boolValue() != v2.boolValue());
+            return new BoolValue(v1.boolValue( ) != v2.boolValue( ));
         if (op.val.equals(Operator.BOOL_GE))
-            return new BoolValue(v1.intValue() >= v2.intValue());
+            throw new IllegalArgumentException(op 
+                    + " operation inappropriate with boolean operands");
+//            return new BoolValue(v1.intValue( ) >= v2.intValue( ));
         if (op.val.equals(Operator.BOOL_GT))
-            return new BoolValue(v1.intValue() > v2.intValue());
+            throw new IllegalArgumentException(op 
+                    + " operation inappropriate with boolean operands");
+//            return new BoolValue(v1.intValue( ) > v2.intValue( ));
+        
+        // Boolean operators performing short-circuit evaluation
         if (op.val.equals(Operator.AND))
-            return new BoolValue(v1.boolValue() && v2.boolValue());
+            return new BoolValue(v1.boolValue( ) ? v2.boolValue( ) : false);
+//            return new BoolValue(v1.boolValue( ) && v2.boolValue( ));
         if (op.val.equals(Operator.OR))
-            return new BoolValue(v1.boolValue() || v2.boolValue());
-        throw new IllegalArgumentException("should never reach here");  
+            return new BoolValue(v1.boolValue( ) ? true : v2.boolValue( ));
+//            return new BoolValue(v1.boolValue( ) || v2.boolValue( ));
+        throw new IllegalArgumentException("should never reach here");
     }
     
-        Value applyUnary (Operator op, Value v) {
-        StaticTypeCheck.check( ! v.isUndef(),
-               "reference to undef value");
+    Value applyUnary (Operator op, Value v) {
+        check( ! v.isUndef( ), "reference to undef value");
         if (op.val.equals(Operator.NOT))
             return new BoolValue(!v.boolValue());
         else if (op.val.equals(Operator.INT_NEG))
@@ -206,6 +221,10 @@ public class Semantics {
         throw new IllegalArgumentException("should never reach here: "
                                            + op.toString());
     }
-    
+    public static void check(boolean test, String msg) {
+    if (test)  return;
+    System.err.println(msg);
+    System.exit(1);
+    }
 }
 

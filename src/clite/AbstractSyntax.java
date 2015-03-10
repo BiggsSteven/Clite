@@ -574,26 +574,57 @@ class Operator {
      boolean RelationalOp ( ) {
 //        return val.equals(LT) || val.equals(LE) || val.equals(EQ)
 //            || val.equals(NE) || val.equals(GT) || val.equals(GE);
-        return val.contains(LT) || val.contains(LE) || val.contains(EQ)
-            || val.contains(NE) || val.contains(GT) || val.contains(GE);
+        return val.equals(LT) || val.equals(LE) || val.equals(EQ)
+            || val.equals(NE) || val.equals(GT) || val.equals(GE)
+            || val.equals(FLOAT_LT) || val.equals(FLOAT_LE)
+            || val.equals(FLOAT_EQ) || val.equals(FLOAT_NE)
+            || val.equals(FLOAT_GT) || val.equals(FLOAT_GE)
+            || val.equals(INT_LT) || val.equals(INT_LE)
+            || val.equals(INT_EQ) || val.equals(INT_NE)
+            || val.equals(INT_GT) || val.equals(INT_GE)
+            || val.equals(CHAR_LT) || val.equals(CHAR_LE)
+            || val.equals(CHAR_EQ) || val.equals(CHAR_NE)
+            || val.equals(CHAR_GT) || val.equals(CHAR_GE)
+            || val.equals(BOOL_LT) || val.equals(BOOL_LE)
+            || val.equals(BOOL_EQ) || val.equals(BOOL_NE)
+            || val.equals(BOOL_GT) || val.equals(BOOL_GE);
     }
     boolean ArithmeticOp ( ) {
 //        return val.equals(PLUS) || val.equals(MINUS)
 //            || val.equals(TIMES) || val.equals(DIV) || val.equals(MOD);
         return val.contains(PLUS) || val.contains(MINUS)
-            || val.contains(TIMES) || val.contains(DIV) || val.contains(MOD);
+            || val.contains(TIMES) || val.contains(DIV) || val.contains(MOD)
+            || val.equals(INT_PLUS) || val.equals(INT_MINUS)
+            || val.equals(INT_TIMES) || val.equals(INT_DIV)
+            || val.equals(INT_MOD)
+            || val.equals(FLOAT_PLUS) || val.equals(FLOAT_MINUS)
+            || val.equals(FLOAT_TIMES) || val.equals(FLOAT_DIV);
     }
-    boolean ModOp ( ) { return val.contains(MOD) ; }
+    boolean ModOp ( ) { 
+//        return val.contains(MOD) ; 
+        return val.equals(MOD) || val.equals(INT_MOD) ; 
+    }
     boolean NotOp ( ) { return val.equals(NOT) ; }
-//    boolean NegateOp ( ) { return val.equals(NEG) ; }
-    boolean NegateOp ( ) { return val.contains(NEG) || val.contains(NEG.toUpperCase()) ; }
-    boolean intOp ( ) { return val.equals(INT); }
-    boolean floatOp ( ) { return val.equals(FLOAT); }
-    boolean charOp ( ) { return val.equals(CHAR); }
-    boolean I2FOp ( ) { return val.equals(I2F); }
-    boolean F2IOp ( ) { return val.equals(F2I); }
-    boolean C2IOp ( ) { return val.equals(C2I); }
-    boolean I2COp ( ) { return val.equals(I2C); }
+//    boolean NegateOp ( ) { return val.contains(NEG) || val.contains(NEG.toUpperCase()) ; }
+    boolean NegateOp ( ) {
+        return val.equals(NEG) || val.equals(INT_NEG) || val.equals(FLOAT_NEG);
+    }
+//    boolean intOp ( ) { return val.equals(INT); }
+    boolean intOp ( ) {
+        return val.equals(INT) || val.equals(C2I) || val.equals(F2I);
+    }
+//    boolean floatOp ( ) { return val.equals(FLOAT); }
+    boolean floatOp ( ) {
+        return val.equals(FLOAT) || val.equals(I2F);
+    }
+//    boolean charOp ( ) { return val.equals(CHAR); }
+    boolean charOp ( ) {
+        return val.equals(CHAR) || val.equals(I2C);
+    }
+//    boolean I2FOp ( ) { return val.equals(I2F); }
+//    boolean F2IOp ( ) { return val.equals(F2I); }
+//    boolean C2IOp ( ) { return val.equals(C2I); }
+//    boolean I2COp ( ) { return val.equals(I2C); }
 
     final static String intMap[ ] [ ] = {
         {PLUS, INT_PLUS}, {MINUS, INT_MINUS},

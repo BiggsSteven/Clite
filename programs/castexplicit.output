@@ -1,4 +1,4 @@
-Begin parsing... programs/factorial.cpp
+Begin parsing... programs/castexplicit.cpp
 
 Program (abstract syntax): 
   Declarations: 
@@ -6,13 +6,13 @@ Program (abstract syntax):
   Block: 
     Assignment: 
       Variable: n
-      IntValue: 5
+      IntValue: 3
     Assignment: 
       Variable: i
-      IntValue: 1
+      IntValue: 0
     Assignment: 
       Variable: f
-      IntValue: 1
+      FloatValue: 1.0
     Loop: 
       Binary: 
         Operator: <
@@ -30,7 +30,9 @@ Program (abstract syntax):
           Binary: 
             Operator: *
             Variable: f
-            Variable: i
-
+            Unary: 
+              Operator: float
+              Variable: i
+			  
 Final State
-{ <f, 120>, <n, 5>, <i, 5> }
+{ <f, 6.0>, <n, 3>, <i, 3> }
