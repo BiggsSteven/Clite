@@ -140,6 +140,13 @@ class Type {
     protected String id;
     protected Type (String t) { id = t; }
     public String getId ( ) { return id; }
+    public int getSize ( ) {
+        if (id.equals("int")) return 4;
+        else if (id.equals("bool")) return 1;
+        else if (id.equals("float")) return 4;
+        else if (id.equals("char")) return 1;
+        return 1;
+    }
 }
 
 abstract class Statement {
@@ -346,7 +353,9 @@ abstract class Value extends Expression {
     boolean isUndef( ) { return undef; }
 
     Type type ( ) { return type; }
-
+    //@Override
+    public int getSize ( ) { return type.getSize(); }
+    
     static Value mkValue (Type type) {
         if (type == Type.INT) return new IntValue( );
         if (type == Type.BOOL) return new BoolValue( );
@@ -357,7 +366,7 @@ abstract class Value extends Expression {
 }
 
 class IntValue extends Value {
-    private int value = 0;
+    public int value = 0;
 
     IntValue ( ) { type = Type.INT; }
 
@@ -571,9 +580,9 @@ class Operator {
     public boolean equals(Object obj) { return val.equals(obj); }
 
     boolean BooleanOp ( ) { return val.equals(AND) || val.equals(OR); }
-     boolean RelationalOp ( ) {
-//        return val.equals(LT) || val.equals(LE) || val.equals(EQ)
-//            || val.equals(NE) || val.equals(GT) || val.equals(GE);
+    boolean RelationalOp ( ) {
+//        return val.contains(LT) || val.contains(LE) || val.contains(EQ)
+//            || val.contains(NE) || val.contains(GT) || val.contains(GE);
         return val.equals(LT) || val.equals(LE) || val.equals(EQ)
             || val.equals(NE) || val.equals(GT) || val.equals(GE)
             || val.equals(FLOAT_LT) || val.equals(FLOAT_LE)
@@ -590,10 +599,10 @@ class Operator {
             || val.equals(BOOL_GT) || val.equals(BOOL_GE);
     }
     boolean ArithmeticOp ( ) {
-//        return val.equals(PLUS) || val.equals(MINUS)
-//            || val.equals(TIMES) || val.equals(DIV) || val.equals(MOD);
-        return val.contains(PLUS) || val.contains(MINUS)
-            || val.contains(TIMES) || val.contains(DIV) || val.contains(MOD)
+//        return val.contains(PLUS) || val.contains(MINUS)
+//            || val.contains(TIMES) || val.contains(DIV) || val.contains(MOD);
+        return val.equals(PLUS) || val.equals(MINUS)
+            || val.equals(TIMES) || val.equals(DIV) || val.equals(MOD)
             || val.equals(INT_PLUS) || val.equals(INT_MINUS)
             || val.equals(INT_TIMES) || val.equals(INT_DIV)
             || val.equals(INT_MOD)

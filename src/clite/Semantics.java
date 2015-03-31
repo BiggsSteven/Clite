@@ -16,24 +16,56 @@ public class Semantics {
 
     State initialState (Declarations d){
         //Declaration = Variable v; Type t
-        State state = new State();
+        //State state = new State();
+        Enviroment enviroment = new Enviroment();
+        Memory memory = new Memory();
         Value intUndef = new IntValue();
+        IntValue memStart = new IntValue(0);
+        IntValue heapStart = new IntValue(512);
         for(Declaration decl:d)
             if (decl instanceof VariableDecl) {
-                VariableDecl vd = (VariableDecl) decl; 
-                ArrayList<Value> val = new ArrayList<Value>();
-                val.add(Value.mkValue(vd.t));
-                state.put(vd.v, val);
+                VariableDecl vd = (VariableDecl) decl;
+                //ArrayList<Value> val = new ArrayList<Value>();
+                //val.add(Value.mkValue(vd.t));
+                //state.put(vd.v, val);
+                
+                IntValue tempVal = new IntValue(0);
+                tempVal.value = memStart.value;
+                ArrayList<IntValue> val2 = new ArrayList<IntValue>();
+                val2.add(tempVal);
+                enviroment.put(vd.v,tempVal);
+                memory.put(tempVal,Value.mkValue(vd.t));
+                memStart.value = memStart.value + newAD(1,vd.t);
+                
             }
             else if (decl instanceof ArrayDecl) {
                 ArrayDecl ad = (ArrayDecl) decl; 
-                ArrayList<Value> val = new ArrayList<Value>();
-                for (int i = 0; i < ad.s.intValue(); i++)
-                    val.add(Value.mkValue(ad.t));
-                state.put(new ArrayRef(ad.v.id, ad.s), val);
+                //ArrayList<Value> val = new ArrayList<Value>();
+                
+                IntValue tempVal = new IntValue(memStart.value);
+                ArrayList<IntValue> val2 = new ArrayList<IntValue>();
+                val2.add(tempVal);
+                enviroment.put(new ArrayRef(ad.v.id, ad.s),tempVal);
+                memory.put(tempVal,Value.mkValue(ad.t));
+                memStart.value = memStart.value + newAD(ad.s.intValue(),ad.t);
+                for (int i = 0; i < ad.s.intValue(); i++){
+                    //val.add(Value.mkValue(ad.t));
+                    tempVal = new IntValue(heapStart.value);
+                    memory.put(tempVal,Value.mkValue(ad.t));
+                    heapStart.value = heapStart.value + newAD(1,ad.t);
+                }
+                //state.put(new ArrayRef(ad.v.id, ad.s), val);
+                
+                
+                
             }
             
+            State state = new State(enviroment, memory);
         return state;
+    }
+    
+    int newAD (int size, Type type) {
+        return size * type.getSize();
     }
     
     State M(Statement s, State state){
@@ -42,7 +74,7 @@ public class Semantics {
         if(s instanceof Conditional)return M((Conditional)s, state);
         if(s instanceof Loop) return M((Loop)s, state);
         if(s instanceof Block) return M((Block)s, state);
-        throw new IllegalArgumentException("Error");
+        throw new IllegalArgumentException("should never reach here");
     }
     
     State M(Skip s, State state){
@@ -85,11 +117,11 @@ public class Semantics {
     
     Value M(Expression e, State state){
         if(e instanceof Value) return (Value)e;
-        if(e instanceof Variable) return (Value)(state.get(e).get(0));
+        if(e instanceof Variable) return (Value)(state.m.get(state.e.get(e)));
         if (e instanceof ArrayRef) {
 //            return (Value)(state.get(e));
             int id = ((IntValue)M(((ArrayRef)e).index, state)).intValue();
-            return (Value)(state.get(e).get(id));
+            return (Value)(state.e.get(e));
         }
         if(e instanceof Binary){
             Binary b = (Binary)e;
@@ -99,11 +131,11 @@ public class Semantics {
             Unary u = (Unary)e;
             return applyUnary(u.op,M(u.term, state));
         }
-        throw new IllegalArgumentException("Error");
+        throw new IllegalArgumentException("should never reach here");
     }
     
     Value applyBinary(Operator op, Value v1, Value v2){
-        check( ! v1.isUndef( ) && ! v2.isUndef( ), "reference to undef value");
+        StaticTypeCheck.check(!v1.isUndef() && ! v2.isUndef(), "reference to undef value");
         if(op.val.equals(Operator.INT_PLUS))
             return new IntValue(v1.intValue() + v2.intValue());
         if(op.val.equals(Operator.INT_MINUS))
@@ -160,43 +192,30 @@ public class Semantics {
             return new BoolValue(v1.charValue() >= v2.charValue());
         if (op.val.equals(Operator.CHAR_GT))
             return new BoolValue(v1.charValue() > v2.charValue());
-        
-        // BOOL operators
-        // Relational operations <, <=, >, >= are legal in C (and hence CLite)
-        // as booleans are stored as integers in it; illegal in modern languages
         if (op.val.equals(Operator.BOOL_LT))
-            throw new IllegalArgumentException(op 
-                    + " operation inappropriate with boolean operands");
-//            return new BoolValue(v1.intValue( ) < v2.intValue( ));
+            return new BoolValue(v1.intValue() < v2.intValue());
         if (op.val.equals(Operator.BOOL_LE))
-            throw new IllegalArgumentException(op 
-                    + " operation inappropriate with boolean operands");
-//            return new BoolValue(v1.intValue( ) <= v2.intValue( ));
+            return new BoolValue(v1.intValue() <= v2.intValue());
         if (op.val.equals(Operator.BOOL_EQ))
-            return new BoolValue(v1.boolValue( ) == v2.boolValue( ));
+            return new BoolValue(v1.boolValue() == v2.boolValue());
         if (op.val.equals(Operator.BOOL_NE))
-            return new BoolValue(v1.boolValue( ) != v2.boolValue( ));
+            return new BoolValue(v1.boolValue() != v2.boolValue());
         if (op.val.equals(Operator.BOOL_GE))
-            throw new IllegalArgumentException(op 
-                    + " operation inappropriate with boolean operands");
-//            return new BoolValue(v1.intValue( ) >= v2.intValue( ));
+            return new BoolValue(v1.intValue() >= v2.intValue());
         if (op.val.equals(Operator.BOOL_GT))
-            throw new IllegalArgumentException(op 
-                    + " operation inappropriate with boolean operands");
-//            return new BoolValue(v1.intValue( ) > v2.intValue( ));
-        
-        // Boolean operators performing short-circuit evaluation
+            return new BoolValue(v1.intValue() > v2.intValue());
         if (op.val.equals(Operator.AND))
             return new BoolValue(v1.boolValue( ) ? v2.boolValue( ) : false);
 //            return new BoolValue(v1.boolValue( ) && v2.boolValue( ));
         if (op.val.equals(Operator.OR))
             return new BoolValue(v1.boolValue( ) ? true : v2.boolValue( ));
 //            return new BoolValue(v1.boolValue( ) || v2.boolValue( ));
-        throw new IllegalArgumentException("should never reach here");
+        throw new IllegalArgumentException("should never reach here");  
     }
     
-    Value applyUnary (Operator op, Value v) {
-        check( ! v.isUndef( ), "reference to undef value");
+        Value applyUnary (Operator op, Value v) {
+        StaticTypeCheck.check( ! v.isUndef(),
+               "reference to undef value");
         if (op.val.equals(Operator.NOT))
             return new BoolValue(!v.boolValue());
         else if (op.val.equals(Operator.INT_NEG))
@@ -221,10 +240,31 @@ public class Semantics {
         throw new IllegalArgumentException("should never reach here: "
                                            + op.toString());
     }
-    public static void check(boolean test, String msg) {
-    if (test)  return;
-    System.err.println(msg);
-    System.exit(1);
+   
+        
+        
+            public static void main(String args[]) {
+    	System.out.println("Begin parsing... " + args[0]);
+    	Parser parser  = new Parser(new Lexer(args[0]));
+        Program prog = parser.program();
+        prog.display();
+
+        System.out.println("\nBegin type checking..." + args[0]);
+        System.out.println("\nType map:");
+        TypeMap map = StaticTypeCheck.typing(prog.decpart);
+        map.display();
+
+        StaticTypeCheck.V(prog);
+        Program out = TypeTransformer.T(prog, map);
+        System.out.println("\nTransformed Abstract Syntax Tree");
+        out.display();
+
+        System.out.println("\nBegin interpreting..." + args[0]);
+        Semantics semantics = new Semantics( );
+        State state = semantics.M(out);
+        System.out.println("\nFinal State");
+        state.display( );
     }
+        
 }
 
