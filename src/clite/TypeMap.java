@@ -1,6 +1,6 @@
 /*
  * TypeMap.java implements the type map for storing
- * the variables declared in the program.
+ * the variables and array references declared in the program.
  */
 
 package clite;

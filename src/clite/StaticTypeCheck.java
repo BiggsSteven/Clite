@@ -92,14 +92,13 @@ public class StaticTypeCheck {
         }
         throw new IllegalArgumentException("should never reach here");
     }
-    
+
     public static void V (Expression e, TypeMap tm) {
         if (e instanceof Value)
             return;
         if (e instanceof Variable) {
             Variable v = (Variable)e;
-            check( tm.containsKey(v)
-                   , "undeclared variable: " + v);
+            check( tm.containsKey(v), "undeclared variable: " + v);
             return;
         }
         if (e instanceof ArrayRef) {

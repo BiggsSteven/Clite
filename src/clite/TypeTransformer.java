@@ -1,9 +1,10 @@
 /*
- * TypeTransformer.java implements the Clite type system that allows
+ * TypeTransformer.java implements the Clite type system that supports
  * implicit type conversion. It transforms the parser generated 
- * abstract syntax tree by adding explicit type conversions as needed.
- * It is defined by the functions T, which use classes in the abstract
- * syntax of Clite and return the transformed syntax tree under that node.
+ * abstract syntax tree such that all operators are explicitly typed and
+ * implicit conversions are made explicit. It is defined by the functions T,
+ * which use classes in the abstract syntax of Clite and return the
+ * transformed syntax tree under that node.
  */
 
 package clite;

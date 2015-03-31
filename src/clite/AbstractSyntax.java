@@ -325,7 +325,7 @@ class ArrayRef extends VariableRef {
     }
 }
 
-abstract class Value extends Expression {
+abstract class Value extends Expression implements MemValue {
 // Value = IntValue | BoolValue | CharValue | FloatValue
     protected Type type;
     protected boolean undef = true;
@@ -353,9 +353,9 @@ abstract class Value extends Expression {
     boolean isUndef( ) { return undef; }
 
     Type type ( ) { return type; }
-    //@Override
+    @Override
     public int getSize ( ) { return type.getSize(); }
-    
+
     static Value mkValue (Type type) {
         if (type == Type.INT) return new IntValue( );
         if (type == Type.BOOL) return new BoolValue( );
@@ -366,7 +366,7 @@ abstract class Value extends Expression {
 }
 
 class IntValue extends Value {
-    public int value = 0;
+    private int value = 0;
 
     IntValue ( ) { type = Type.INT; }
 
@@ -514,7 +514,7 @@ class Operator {
     final static String TIMES = "*";
     final static String DIV = "/";
     final static String MOD = "%";
-    // UnaryOp = !
+    // UnaryOp = ! | -
     final static String NOT = "!";
     final static String NEG = "neg";
     // CastOp = int | float | char
@@ -535,7 +535,7 @@ class Operator {
     final static String INT_TIMES = "INT*";
     final static String INT_DIV = "INT/";
     final static String INT_MOD = "INT%";
-    // UnaryOp = !
+    // UnaryOp = -
     final static String INT_NEG = "INTNEG";
     // RelationalOp = < | <= | == | != | >= | >
     final static String FLOAT_LT = "FLOAT<";
@@ -544,13 +544,12 @@ class Operator {
     final static String FLOAT_NE = "FLOAT!=";
     final static String FLOAT_GT = "FLOAT>";
     final static String FLOAT_GE = "FLOAT>=";
-    // ArithmeticOp = + | - | * | / | %
+    // ArithmeticOp = + | - | * | /
     final static String FLOAT_PLUS = "FLOAT+";
     final static String FLOAT_MINUS = "FLOAT-";
     final static String FLOAT_TIMES = "FLOAT*";
     final static String FLOAT_DIV = "FLOAT/";
-    final static String FLOAT_MOD = "FLOAT%";
-    // UnaryOp = !
+    // UnaryOp = -
     final static String FLOAT_NEG = "FLOATNEG";
     // RelationalOp = < | <= | == | != | >= | >
     final static String CHAR_LT = "CHAR<";
@@ -645,7 +644,7 @@ class Operator {
 
     final static String floatMap[ ] [ ] = {
         {PLUS, FLOAT_PLUS}, {MINUS, FLOAT_MINUS},
-        {TIMES, FLOAT_TIMES}, {DIV, FLOAT_DIV}, {MOD, FLOAT_MOD},
+        {TIMES, FLOAT_TIMES}, {DIV, FLOAT_DIV},
         {EQ, FLOAT_EQ}, {NE, FLOAT_NE}, {LT, FLOAT_LT},
         {LE, FLOAT_LE}, {GT, FLOAT_GT}, {GE, FLOAT_GE},
         {NEG, FLOAT_NEG}, {INT, F2I}
