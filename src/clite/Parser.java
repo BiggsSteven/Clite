@@ -89,6 +89,7 @@ public class Parser {
     }
     
     public Function function(Type t, String id){
+        funcId = id;
         match(TokenType.LeftParen);
         Declarations params = params();
         match(TokenType.RightParen);
@@ -256,11 +257,11 @@ public class Parser {
      
     }
     
-    private ReturnStatement returnStatement(){
+    private Return returnStatement(){
         match(TokenType.Return);
         Expression returning = expression();
         match(TokenType.Semicolon);
-        return new ReturnStatement(returning);
+        return new Return(new Variable(funcId),returning);
     }
     
     private Block statements () {

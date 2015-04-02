@@ -34,9 +34,11 @@ class Program {
         int level = 0;
         Indenter indent = new Indenter(level);
         indent.display("Program (abstract syntax): ");
+        level = level + 1;
+        indent = new Indenter(level); 
         indent.display("Globals:");
-        globals.display(0);
-        functions.display(level + 1);
+        globals.display(level);
+        functions.display(level);
     //        decpart.display(level+1);
     //        body.display(level+1);
         System.out.println();
@@ -49,12 +51,11 @@ class Functions extends ArrayList<Function>{
         Indenter indent = new Indenter(level);
         indent.display("Functions:");
         for (Function fnct : this) {
-            System.out.print("\nFunction = ");
-            fnct.display();
+            fnct.display(level + 1);
+            System.out.println();
         }
     }
 }
-
 
 class Function {
     Type type;
@@ -71,18 +72,28 @@ class Function {
         body = b;
     }
     
-    public void display(){
-        
+    public void display(int level){
+        Indenter indent = new Indenter(level);
+        indent.display("Function = " + id + "; Return type = " + type.getId());
+        level = level + 1;
+        indent = new Indenter(level);
+        indent.display("params = ");
+        params.display(level);
+        indent.display("locals = ");
+        locals.display(level);
+        body.display(level);
     }
 }
-    
+
+
 class Declarations extends ArrayList<Declaration> {
     // Declarations = Declaration*
     // (a list of declarations d1, d2, ..., dn)
 
     public void display (int level) {
         Indenter indent = new Indenter(level);
-        indent.display("  Declarations \n {");
+        indent.display("Declarations:");
+        indent.display(" {");
         String sep = "";
         for (Declaration dcl : this) {
             System.out.print(sep);
@@ -292,16 +303,31 @@ class Loop extends Statement {
 //    }
 //}
 
-class ReturnStatement extends Statement {
+class Return extends Statement {
+    Variable target;
     Expression returned;
     
-    ReturnStatement(Expression r) {
+    Return(Variable t, Expression r) {
+        target = t;
         returned = r;
+    }
+    public void display(int level){
+        super.display(level);
+        target.display(level + 1);
+        returned.display(level + 1);
     }
 }
 
 class Expressions extends ArrayList<Expression>{
     
+    public void display(int level){
+        Indenter indent = new Indenter(level);
+        indent.display("args = ");
+        for (Expression exp : this)
+        {
+            exp.display(level+ 1);
+        }
+    }
 }
 
 
@@ -309,8 +335,8 @@ abstract class Expression {
     // Expression = VariableRef | Value | Binary | Unary
 
     public void display (int level) {
-         Indenter indent = new Indenter(level);
-         indent.display(getClass().toString().substring(12) + ": ");
+        Indenter indent = new Indenter(level);
+        indent.display(getClass().toString().substring(12) + ": ");
     }
 }
 
@@ -322,7 +348,14 @@ class StatementCall extends Statement{
         id = i;
         arg = e;
     }
+    
+    public void display(int level){
+        Indenter indent = new Indenter(level);
+        indent.display(getClass().toString().substring(12) + ": " + id);
+        arg.display(level + 1);
+    }
 }
+
 
 class ExpressionCall extends Expression{
     String id;
@@ -331,6 +364,12 @@ class ExpressionCall extends Expression{
     ExpressionCall(String i, Expressions e){
         id = i;
         arg = e;
+    }
+    
+    public void display(int level){
+        Indenter indent = new Indenter(level);
+        indent.display(getClass().toString().substring(12) + ": " + id);
+        arg.display(level + 1);
     }
 }
 

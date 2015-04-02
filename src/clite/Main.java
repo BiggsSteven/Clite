@@ -7,7 +7,7 @@ package clite;
 public class Main {
 
     public static void main(String[] args) {
-        String filename = "programs/factorial.cpp";
+        String filename = "programs/gcd.cpp";
     	System.out.println("Begin parsing... " + filename);
     	Parser parser  = new Parser(new Lexer(filename));
         Program prog = parser.program();
