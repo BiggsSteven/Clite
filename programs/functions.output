@@ -1,0 +1,396 @@
+Begin parsing... programs/functions.cpp
+
+Program (abstract syntax): 
+  Globals:
+  Declarations: 
+    {<h, int>, <i, int>}
+  Functions: 
+    Function = A; Return type = void
+      params = 
+      Declarations: 
+        {<x, int>, <y, int>}
+      locals = 
+      Declarations: 
+        {<i, bool>, <j, bool>}
+      Block: 
+        Call: B
+          args = 
+            Variable: h
+
+    Function = B; Return type = void
+      params = 
+      Declarations: 
+        {<w, int>}
+      locals = 
+      Declarations: 
+        {<j, int>, <k, int>}
+      Block: 
+        Assignment: 
+          Variable: i
+          Binary: 
+            Operator: *
+            IntValue: 2
+            Variable: w
+        Assignment: 
+          Variable: w
+          Binary: 
+            Operator: +
+            Variable: w
+            IntValue: 1
+
+    Function = main; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<a, int>, <b, int>}
+      Block: 
+        Assignment: 
+          Variable: h
+          IntValue: 5
+        Assignment: 
+          Variable: a
+          IntValue: 3
+        Assignment: 
+          Variable: b
+          IntValue: 2
+        Call: A
+          args = 
+            Variable: a
+            Variable: b
+
+
+Begin type checking...
+
+Transformed Abstract Syntax Tree
+
+Program (abstract syntax): 
+  Globals:
+  Declarations: 
+    {<h, int>, <i, int>}
+  Functions: 
+    Function = A; Return type = void
+      params = 
+      Declarations: 
+        {<x, int>, <y, int>}
+      locals = 
+      Declarations: 
+        {<i, bool>, <j, bool>}
+      Block: 
+        Call: B
+          args = 
+            Variable: h
+
+    Function = B; Return type = void
+      params = 
+      Declarations: 
+        {<w, int>}
+      locals = 
+      Declarations: 
+        {<j, int>, <k, int>}
+      Block: 
+        Assignment: 
+          Variable: i
+          Binary: 
+            Operator: INT*
+            IntValue: 2
+            Variable: w
+        Assignment: 
+          Variable: w
+          Binary: 
+            Operator: INT+
+            Variable: w
+            IntValue: 1
+
+    Function = main; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<a, int>, <b, int>}
+      Block: 
+        Assignment: 
+          Variable: h
+          IntValue: 5
+        Assignment: 
+          Variable: a
+          IntValue: 3
+        Assignment: 
+          Variable: b
+          IntValue: 2
+        Call: A
+          args = 
+            Variable: a
+            Variable: b
+
+
+Globals = { 
+  <h, int>, 
+  <i, int>
+}
+
+Function A = { 
+  <main(), int>, 
+  <B(<w, int>), void>, 
+  <h, int>, 
+  <x, int>, 
+  <i, bool>, 
+  <y, int>, 
+  <A(<x, int>, <y, int>), void>, 
+  <j, bool>
+}
+
+Function B = { 
+  <main(), int>, 
+  <B(<w, int>), void>, 
+  <w, int>, 
+  <h, int>, 
+  <i, int>, 
+  <A(<x, int>, <y, int>), void>, 
+  <j, int>, 
+  <k, int>
+}
+
+Function main = { 
+  <main(), int>, 
+  <a, int>, 
+  <b, int>, 
+  <B(<w, int>), void>, 
+  <h, int>, 
+  <i, int>, 
+  <A(<x, int>, <y, int>), void>
+}
+
+No type errors
+
+
+Begin interpreting... programs/functions.cpp
+
+
+Allocated global variables to memory:
+-------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           h                 int      undef
+    4           i                 int      undef
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "main":
+------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           h                 int      undef
+    4           i                 int      undef
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    8           a                 int      undef
+    12          b                 int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "A":
+---------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           h                 int      5
+    4           i                 int      undef
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    8           a                 int      3
+    12          b                 int      2
+    16          x                 int      3
+    20          y                 int      2
+    24          i                 bool     undef
+    25          j                 bool     undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "B":
+---------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           h                 int      5
+    4           i                 int      undef
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    8           a                 int      3
+    12          b                 int      2
+    16          x                 int      3
+    20          y                 int      2
+    24          i                 bool     undef
+    25          j                 bool     undef
+    26          w                 int      5
+    30          j                 int      undef
+    34          k                 int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "B":
+-----------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           h                 int      5
+    4           i                 int      10
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    8           a                 int      3
+    12          b                 int      2
+    16          x                 int      3
+    20          y                 int      2
+    24          i                 bool     undef
+    25          j                 bool     undef
+    26          w                 int      6
+    30          j                 int      undef
+    34          k                 int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "B":
+-----------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           h                 int      5
+    4           i                 int      10
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    8           a                 int      3
+    12          b                 int      2
+    16          x                 int      3
+    20          y                 int      2
+    24          i                 bool     undef
+    25          j                 bool     undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "A":
+-----------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           h                 int      5
+    4           i                 int      10
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    8           a                 int      3
+    12          b                 int      2
+    16          x                 int      3
+    20          y                 int      2
+    24          i                 bool     undef
+    25          j                 bool     undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "A":
+-----------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           h                 int      5
+    4           i                 int      10
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    8           a                 int      3
+    12          b                 int      2
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "main":
+--------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           h                 int      5
+    4           i                 int      10
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    8           a                 int      3
+    12          b                 int      2
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "main":
+--------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           h                 int      5
+    4           i                 int      10
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated global variables from memory:
+-----------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue

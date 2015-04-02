@@ -1,0 +1,533 @@
+Begin parsing... programs/sort2.cpp
+
+Program (abstract syntax): 
+  Globals:
+  Declarations: 
+    {<orig[5], char>, <sorted[5], char>}
+  Functions: 
+    Function = main; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<n, int>}
+      Block: 
+        Assignment: 
+          Variable: n
+          IntValue: 5
+        Assignment: 
+          ArrayRef: orig[0]
+          CharValue: 2
+        Assignment: 
+          ArrayRef: orig[1]
+          CharValue: 9
+        Assignment: 
+          ArrayRef: orig[2]
+          CharValue: 5
+        Assignment: 
+          ArrayRef: orig[3]
+          CharValue: 0
+        Assignment: 
+          ArrayRef: orig[4]
+          CharValue: 6
+        Call: sort
+          args = 
+            Variable: n
+
+    Function = sort; Return type = void
+      params = 
+      Declarations: 
+        {<n, int>}
+      locals = 
+      Declarations: 
+        {<count[5], int>, <i, int>, <j, int>}
+      Block: 
+        Assignment: 
+          Variable: i
+          IntValue: 0
+        Loop: 
+          Binary: 
+            Operator: <
+            Variable: i
+            Variable: n
+          Block: 
+            Assignment: 
+              ArrayRef: count[i]
+              IntValue: 0
+            Assignment: 
+              Variable: i
+              Binary: 
+                Operator: +
+                Variable: i
+                IntValue: 1
+        Assignment: 
+          Variable: i
+          IntValue: 0
+        Loop: 
+          Binary: 
+            Operator: <
+            Variable: i
+            Binary: 
+              Operator: -
+              Variable: n
+              IntValue: 1
+          Block: 
+            Assignment: 
+              Variable: j
+              Binary: 
+                Operator: +
+                Variable: i
+                IntValue: 1
+            Loop: 
+              Binary: 
+                Operator: <
+                Variable: j
+                Variable: n
+              Block: 
+                Conditional: 
+                  Binary: 
+                    Operator: <
+                    ArrayRef: orig[i]
+                    ArrayRef: orig[j]
+                  Block: 
+                    Assignment: 
+                      ArrayRef: count[j]
+                      Binary: 
+                        Operator: +
+                        ArrayRef: count[j]
+                        IntValue: 1
+                  Block: 
+                    Assignment: 
+                      ArrayRef: count[i]
+                      Binary: 
+                        Operator: +
+                        ArrayRef: count[i]
+                        IntValue: 1
+                Assignment: 
+                  Variable: j
+                  Binary: 
+                    Operator: +
+                    Variable: j
+                    IntValue: 1
+            Assignment: 
+              Variable: i
+              Binary: 
+                Operator: +
+                Variable: i
+                IntValue: 1
+        Assignment: 
+          Variable: i
+          IntValue: 0
+        Loop: 
+          Binary: 
+            Operator: <
+            Variable: i
+            Variable: n
+          Block: 
+            Assignment: 
+              ArrayRef: sorted[count[i]]
+              ArrayRef: orig[i]
+            Assignment: 
+              Variable: i
+              Binary: 
+                Operator: +
+                Variable: i
+                IntValue: 1
+
+
+Begin type checking...
+
+Transformed Abstract Syntax Tree
+
+Program (abstract syntax): 
+  Globals:
+  Declarations: 
+    {<orig[5], char>, <sorted[5], char>}
+  Functions: 
+    Function = main; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<n, int>}
+      Block: 
+        Assignment: 
+          Variable: n
+          IntValue: 5
+        Assignment: 
+          ArrayRef: orig[0]
+          CharValue: 2
+        Assignment: 
+          ArrayRef: orig[1]
+          CharValue: 9
+        Assignment: 
+          ArrayRef: orig[2]
+          CharValue: 5
+        Assignment: 
+          ArrayRef: orig[3]
+          CharValue: 0
+        Assignment: 
+          ArrayRef: orig[4]
+          CharValue: 6
+        Call: sort
+          args = 
+            Variable: n
+
+    Function = sort; Return type = void
+      params = 
+      Declarations: 
+        {<n, int>}
+      locals = 
+      Declarations: 
+        {<count[5], int>, <i, int>, <j, int>}
+      Block: 
+        Assignment: 
+          Variable: i
+          IntValue: 0
+        Loop: 
+          Binary: 
+            Operator: INT<
+            Variable: i
+            Variable: n
+          Block: 
+            Assignment: 
+              ArrayRef: count[i]
+              IntValue: 0
+            Assignment: 
+              Variable: i
+              Binary: 
+                Operator: INT+
+                Variable: i
+                IntValue: 1
+        Assignment: 
+          Variable: i
+          IntValue: 0
+        Loop: 
+          Binary: 
+            Operator: INT<
+            Variable: i
+            Binary: 
+              Operator: INT-
+              Variable: n
+              IntValue: 1
+          Block: 
+            Assignment: 
+              Variable: j
+              Binary: 
+                Operator: INT+
+                Variable: i
+                IntValue: 1
+            Loop: 
+              Binary: 
+                Operator: INT<
+                Variable: j
+                Variable: n
+              Block: 
+                Conditional: 
+                  Binary: 
+                    Operator: CHAR<
+                    ArrayRef: orig[i]
+                    ArrayRef: orig[j]
+                  Block: 
+                    Assignment: 
+                      ArrayRef: count[j]
+                      Binary: 
+                        Operator: INT+
+                        ArrayRef: count[j]
+                        IntValue: 1
+                  Block: 
+                    Assignment: 
+                      ArrayRef: count[i]
+                      Binary: 
+                        Operator: INT+
+                        ArrayRef: count[i]
+                        IntValue: 1
+                Assignment: 
+                  Variable: j
+                  Binary: 
+                    Operator: INT+
+                    Variable: j
+                    IntValue: 1
+            Assignment: 
+              Variable: i
+              Binary: 
+                Operator: INT+
+                Variable: i
+                IntValue: 1
+        Assignment: 
+          Variable: i
+          IntValue: 0
+        Loop: 
+          Binary: 
+            Operator: INT<
+            Variable: i
+            Variable: n
+          Block: 
+            Assignment: 
+              ArrayRef: sorted[count[i]]
+              ArrayRef: orig[i]
+            Assignment: 
+              Variable: i
+              Binary: 
+                Operator: INT+
+                Variable: i
+                IntValue: 1
+
+
+Globals = { 
+  <sorted[5], char>, 
+  <orig[5], char>
+}
+
+Function main = { 
+  <main(), int>, 
+  <sorted[5], char>, 
+  <sort(<n, int>), void>, 
+  <orig[5], char>, 
+  <n, int>
+}
+
+Function sort = { 
+  <main(), int>, 
+  <sorted[5], char>, 
+  <orig[5], char>, 
+  <count[5], int>, 
+  <i, int>, 
+  <sort(<n, int>), void>, 
+  <j, int>, 
+  <n, int>
+}
+
+No type errors
+
+
+Begin interpreting... programs/sort2.cpp
+
+
+Allocated global variables to memory:
+-------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           orig[5]           char     DopeVector{addr[0]=512, size=5, type=char}
+    9           sorted[5]         char     DopeVector{addr[0]=517, size=5, type=char}
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    512         orig[0]           char     undef
+    513         orig[1]           char     undef
+    514         orig[2]           char     undef
+    515         orig[3]           char     undef
+    516         orig[4]           char     undef
+    517         sorted[0]         char     undef
+    518         sorted[1]         char     undef
+    519         sorted[2]         char     undef
+    520         sorted[3]         char     undef
+    521         sorted[4]         char     undef
+
+
+Allocated stack frame for function "main":
+------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           orig[5]           char     DopeVector{addr[0]=512, size=5, type=char}
+    9           sorted[5]         char     DopeVector{addr[0]=517, size=5, type=char}
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    18          n                 int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    512         orig[0]           char     undef
+    513         orig[1]           char     undef
+    514         orig[2]           char     undef
+    515         orig[3]           char     undef
+    516         orig[4]           char     undef
+    517         sorted[0]         char     undef
+    518         sorted[1]         char     undef
+    519         sorted[2]         char     undef
+    520         sorted[3]         char     undef
+    521         sorted[4]         char     undef
+
+
+Allocated stack frame for function "sort":
+------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           orig[5]           char     DopeVector{addr[0]=512, size=5, type=char}
+    9           sorted[5]         char     DopeVector{addr[0]=517, size=5, type=char}
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    18          n                 int      5
+    22          n                 int      5
+    26          count[5]          int      DopeVector{addr[0]=522, size=20, type=int}
+    38          i                 int      undef
+    42          j                 int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    512         orig[0]           char     2
+    513         orig[1]           char     9
+    514         orig[2]           char     5
+    515         orig[3]           char     0
+    516         orig[4]           char     6
+    517         sorted[0]         char     undef
+    518         sorted[1]         char     undef
+    519         sorted[2]         char     undef
+    520         sorted[3]         char     undef
+    521         sorted[4]         char     undef
+    522         count[0]          int      undef
+    526         count[4]          int      undef
+    530         count[8]          int      undef
+    534         count[12]         int      undef
+    538         count[16]         int      undef
+
+
+Interpreting the meaning of function "sort":
+--------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           orig[5]           char     DopeVector{addr[0]=512, size=5, type=char}
+    9           sorted[5]         char     DopeVector{addr[0]=517, size=5, type=char}
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    18          n                 int      5
+    22          n                 int      5
+    26          count[5]          int      DopeVector{addr[0]=522, size=20, type=int}
+    38          i                 int      5
+    42          j                 int      5
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    512         orig[0]           char     2
+    513         orig[1]           char     9
+    514         orig[2]           char     5
+    515         orig[3]           char     0
+    516         orig[4]           char     6
+    517         sorted[0]         char     0
+    518         sorted[1]         char     2
+    519         sorted[2]         char     5
+    520         sorted[3]         char     6
+    521         sorted[4]         char     9
+    522         count[0]          int      1
+    526         count[4]          int      4
+    530         count[8]          int      2
+    534         count[12]         int      0
+    538         count[16]         int      3
+
+
+Deallocated stack frame for function "sort":
+--------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           orig[5]           char     DopeVector{addr[0]=512, size=5, type=char}
+    9           sorted[5]         char     DopeVector{addr[0]=517, size=5, type=char}
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    18          n                 int      5
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    512         orig[0]           char     2
+    513         orig[1]           char     9
+    514         orig[2]           char     5
+    515         orig[3]           char     0
+    516         orig[4]           char     6
+    517         sorted[0]         char     0
+    518         sorted[1]         char     2
+    519         sorted[2]         char     5
+    520         sorted[3]         char     6
+    521         sorted[4]         char     9
+
+
+Interpreting the meaning of function "main":
+--------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           orig[5]           char     DopeVector{addr[0]=512, size=5, type=char}
+    9           sorted[5]         char     DopeVector{addr[0]=517, size=5, type=char}
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    18          n                 int      5
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    512         orig[0]           char     2
+    513         orig[1]           char     9
+    514         orig[2]           char     5
+    515         orig[3]           char     0
+    516         orig[4]           char     6
+    517         sorted[0]         char     0
+    518         sorted[1]         char     2
+    519         sorted[2]         char     5
+    520         sorted[3]         char     6
+    521         sorted[4]         char     9
+
+
+Deallocated stack frame for function "main":
+--------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           orig[5]           char     DopeVector{addr[0]=512, size=5, type=char}
+    9           sorted[5]         char     DopeVector{addr[0]=517, size=5, type=char}
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    512         orig[0]           char     2
+    513         orig[1]           char     9
+    514         orig[2]           char     5
+    515         orig[3]           char     0
+    516         orig[4]           char     6
+    517         sorted[0]         char     0
+    518         sorted[1]         char     2
+    519         sorted[2]         char     5
+    520         sorted[3]         char     6
+    521         sorted[4]         char     9
+
+
+Deallocated global variables from memory:
+-----------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue

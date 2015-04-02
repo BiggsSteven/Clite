@@ -1,0 +1,677 @@
+Begin parsing... programs/testReturn.cpp
+
+Program (abstract syntax): 
+  Globals:
+  Declarations: 
+    {}
+  Functions: 
+    Function = return1; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<a, int>}
+      Block: 
+        Assignment: 
+          Variable: a
+          IntValue: 10
+        Return: 
+          Variable: return1
+          Variable: a
+        Assignment: 
+          Variable: a
+          IntValue: 100
+        Return: 
+          Variable: return1
+          Variable: a
+
+    Function = return2; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<a, int>}
+      Block: 
+        Assignment: 
+          Variable: a
+          IntValue: 10
+        Conditional: 
+          Binary: 
+            Operator: ==
+            Variable: a
+            IntValue: 10
+          Return: 
+            Variable: return2
+            Variable: a
+          Skip: 
+        Assignment: 
+          Variable: a
+          IntValue: 100
+        Return: 
+          Variable: return2
+          Variable: a
+
+    Function = return3; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<a, int>}
+      Block: 
+        Assignment: 
+          Variable: a
+          IntValue: 10
+        Conditional: 
+          Binary: 
+            Operator: ==
+            Variable: a
+            IntValue: 10
+          Block: 
+            Return: 
+              Variable: return3
+              Variable: a
+          Skip: 
+        Assignment: 
+          Variable: a
+          IntValue: 100
+        Return: 
+          Variable: return3
+          Variable: a
+
+    Function = return4; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<i, int>, <j, int>}
+      Block: 
+        Assignment: 
+          Variable: i
+          IntValue: 10
+        Assignment: 
+          Variable: j
+          IntValue: 1
+        Loop: 
+          Binary: 
+            Operator: >
+            Variable: i
+            IntValue: 0
+          Block: 
+            Loop: 
+              Binary: 
+                Operator: <=
+                Variable: j
+                Variable: i
+              Block: 
+                Conditional: 
+                  Binary: 
+                    Operator: ==
+                    Variable: i
+                    Variable: j
+                  Return: 
+                    Variable: return4
+                    Variable: i
+                  Skip: 
+                Assignment: 
+                  Variable: j
+                  Binary: 
+                    Operator: +
+                    Variable: j
+                    IntValue: 1
+            Assignment: 
+              Variable: i
+              Binary: 
+                Operator: -
+                Variable: i
+                IntValue: 1
+        Return: 
+          Variable: return4
+          IntValue: 100
+
+    Function = main; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<r1, int>, <r2, int>, <r3, int>, <r4, int>}
+      Block: 
+        Assignment: 
+          Variable: r1
+          Call: return1
+            args = 
+        Assignment: 
+          Variable: r2
+          Call: return2
+            args = 
+        Assignment: 
+          Variable: r3
+          Call: return3
+            args = 
+        Assignment: 
+          Variable: r4
+          Call: return4
+            args = 
+
+
+Begin type checking...
+
+Transformed Abstract Syntax Tree
+
+Program (abstract syntax): 
+  Globals:
+  Declarations: 
+    {}
+  Functions: 
+    Function = return1; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<a, int>}
+      Block: 
+        Assignment: 
+          Variable: a
+          IntValue: 10
+        Return: 
+          Variable: return1
+          Variable: a
+        Assignment: 
+          Variable: a
+          IntValue: 100
+        Return: 
+          Variable: return1
+          Variable: a
+
+    Function = return2; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<a, int>}
+      Block: 
+        Assignment: 
+          Variable: a
+          IntValue: 10
+        Conditional: 
+          Binary: 
+            Operator: INT==
+            Variable: a
+            IntValue: 10
+          Return: 
+            Variable: return2
+            Variable: a
+          Skip: 
+        Assignment: 
+          Variable: a
+          IntValue: 100
+        Return: 
+          Variable: return2
+          Variable: a
+
+    Function = return3; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<a, int>}
+      Block: 
+        Assignment: 
+          Variable: a
+          IntValue: 10
+        Conditional: 
+          Binary: 
+            Operator: INT==
+            Variable: a
+            IntValue: 10
+          Block: 
+            Return: 
+              Variable: return3
+              Variable: a
+          Skip: 
+        Assignment: 
+          Variable: a
+          IntValue: 100
+        Return: 
+          Variable: return3
+          Variable: a
+
+    Function = return4; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<i, int>, <j, int>}
+      Block: 
+        Assignment: 
+          Variable: i
+          IntValue: 10
+        Assignment: 
+          Variable: j
+          IntValue: 1
+        Loop: 
+          Binary: 
+            Operator: INT>
+            Variable: i
+            IntValue: 0
+          Block: 
+            Loop: 
+              Binary: 
+                Operator: INT<=
+                Variable: j
+                Variable: i
+              Block: 
+                Conditional: 
+                  Binary: 
+                    Operator: INT==
+                    Variable: i
+                    Variable: j
+                  Return: 
+                    Variable: return4
+                    Variable: i
+                  Skip: 
+                Assignment: 
+                  Variable: j
+                  Binary: 
+                    Operator: INT+
+                    Variable: j
+                    IntValue: 1
+            Assignment: 
+              Variable: i
+              Binary: 
+                Operator: INT-
+                Variable: i
+                IntValue: 1
+        Return: 
+          Variable: return4
+          IntValue: 100
+
+    Function = main; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<r1, int>, <r2, int>, <r3, int>, <r4, int>}
+      Block: 
+        Assignment: 
+          Variable: r1
+          Call: return1
+            args = 
+        Assignment: 
+          Variable: r2
+          Call: return2
+            args = 
+        Assignment: 
+          Variable: r3
+          Call: return3
+            args = 
+        Assignment: 
+          Variable: r4
+          Call: return4
+            args = 
+
+
+Globals = { 
+}
+
+Function return1 = { 
+  <return1(), int>, 
+  <a, int>, 
+  <return2(), int>, 
+  <return3(), int>, 
+  <main(), int>, 
+  <return4(), int>
+}
+
+Function return2 = { 
+  <return1(), int>, 
+  <a, int>, 
+  <return2(), int>, 
+  <return3(), int>, 
+  <main(), int>, 
+  <return4(), int>
+}
+
+Function return3 = { 
+  <return1(), int>, 
+  <a, int>, 
+  <return2(), int>, 
+  <return3(), int>, 
+  <main(), int>, 
+  <return4(), int>
+}
+
+Function return4 = { 
+  <return1(), int>, 
+  <return2(), int>, 
+  <main(), int>, 
+  <return4(), int>, 
+  <i, int>, 
+  <j, int>, 
+  <return3(), int>
+}
+
+Function main = { 
+  <r2, int>, 
+  <return1(), int>, 
+  <r3, int>, 
+  <return2(), int>, 
+  <r4, int>, 
+  <main(), int>, 
+  <return4(), int>, 
+  <return3(), int>, 
+  <r1, int>
+}
+
+No type errors
+
+
+Begin interpreting... programs/testReturn.cpp
+
+
+Allocated stack frame for function "main":
+------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           r1                int      undef
+    4           r2                int      undef
+    8           r3                int      undef
+    12          r4                int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "return1":
+---------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           r1                int      undef
+    4           r2                int      undef
+    8           r3                int      undef
+    12          r4                int      undef
+    16          a                 int      undef
+    20          return1           int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "return1":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           r1                int      undef
+    4           r2                int      undef
+    8           r3                int      undef
+    12          r4                int      undef
+    16          a                 int      10
+    20          return1           int      10
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "return1":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           r1                int      undef
+    4           r2                int      undef
+    8           r3                int      undef
+    12          r4                int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "return2":
+---------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           r1                int      10
+    4           r2                int      undef
+    8           r3                int      undef
+    12          r4                int      undef
+    16          a                 int      undef
+    20          return2           int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "return2":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           r1                int      10
+    4           r2                int      undef
+    8           r3                int      undef
+    12          r4                int      undef
+    16          a                 int      10
+    20          return2           int      10
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "return2":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           r1                int      10
+    4           r2                int      undef
+    8           r3                int      undef
+    12          r4                int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "return3":
+---------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           r1                int      10
+    4           r2                int      10
+    8           r3                int      undef
+    12          r4                int      undef
+    16          a                 int      undef
+    20          return3           int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "return3":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           r1                int      10
+    4           r2                int      10
+    8           r3                int      undef
+    12          r4                int      undef
+    16          a                 int      10
+    20          return3           int      10
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "return3":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           r1                int      10
+    4           r2                int      10
+    8           r3                int      undef
+    12          r4                int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "return4":
+---------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           r1                int      10
+    4           r2                int      10
+    8           r3                int      10
+    12          r4                int      undef
+    16          i                 int      undef
+    20          j                 int      undef
+    24          return4           int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "return4":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           r1                int      10
+    4           r2                int      10
+    8           r3                int      10
+    12          r4                int      undef
+    16          i                 int      10
+    20          j                 int      10
+    24          return4           int      10
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "return4":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           r1                int      10
+    4           r2                int      10
+    8           r3                int      10
+    12          r4                int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "main":
+--------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           r1                int      10
+    4           r2                int      10
+    8           r3                int      10
+    12          r4                int      10
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "main":
+--------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue

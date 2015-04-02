@@ -22,32 +22,67 @@ class Indenter {
 
 class Program {
     // Program = Declarations decpart ; Block body
-    Declarations decpart;
-    Block body;
+    Declarations globals;
+    Functions functions;
 
-    Program (Declarations d, Block b) {
-        decpart = d;
-        body = b;
+    Program (Declarations g, Functions f) {
+        globals = g;
+        functions = f;
     }
 
     public void display () {
         int level = 0;
         Indenter indent = new Indenter(level);
         indent.display("Program (abstract syntax): ");
-            decpart.display(level+1);
-            body.display(level+1);
+        indent.display("Globals:");
+        globals.display(0);
+        functions.display(level + 1);
+    //        decpart.display(level+1);
+    //        body.display(level+1);
         System.out.println();
     }
 }
+class Functions extends ArrayList<Function>{
+    
+    
+    public void display (int level) {
+        Indenter indent = new Indenter(level);
+        indent.display("Functions:");
+        for (Function fnct : this) {
+            System.out.print("\nFunction = ");
+            fnct.display();
+        }
+    }
+}
 
+
+class Function {
+    Type type;
+    String id;
+    Declarations params;
+    Declarations locals;
+    Block body;
+    
+    Function(Type t, String i, Declarations p, Declarations d, Block b) {
+        type = t;
+        id = i;
+        params = p;
+        locals = d;
+        body = b;
+    }
+    
+    public void display(){
+        
+    }
+}
+    
 class Declarations extends ArrayList<Declaration> {
     // Declarations = Declaration*
     // (a list of declarations d1, d2, ..., dn)
 
     public void display (int level) {
         Indenter indent = new Indenter(level);
-        indent.display(getClass().toString().substring(12) + ": ");
-        indent.display("  Declarations = {");
+        indent.display("  Declarations \n {");
         String sep = "";
         for (Declaration dcl : this) {
             System.out.print(sep);
@@ -257,12 +292,45 @@ class Loop extends Statement {
 //    }
 //}
 
+class ReturnStatement extends Statement {
+    Expression returned;
+    
+    ReturnStatement(Expression r) {
+        returned = r;
+    }
+}
+
+class Expressions extends ArrayList<Expression>{
+    
+}
+
+
 abstract class Expression {
     // Expression = VariableRef | Value | Binary | Unary
 
     public void display (int level) {
          Indenter indent = new Indenter(level);
          indent.display(getClass().toString().substring(12) + ": ");
+    }
+}
+
+class StatementCall extends Statement{
+    String id;
+    Expressions arg;
+    
+    StatementCall(String i, Expressions e){
+        id = i;
+        arg = e;
+    }
+}
+
+class ExpressionCall extends Expression{
+    String id;
+    Expressions arg;
+    
+    ExpressionCall(String i, Expressions e){
+        id = i;
+        arg = e;
     }
 }
 
@@ -325,7 +393,7 @@ class ArrayRef extends VariableRef {
     }
 }
 
-abstract class Value extends Expression implements MemValue {
+abstract class Value extends Expression{
 // Value = IntValue | BoolValue | CharValue | FloatValue
     protected Type type;
     protected boolean undef = true;
@@ -353,7 +421,7 @@ abstract class Value extends Expression implements MemValue {
     boolean isUndef( ) { return undef; }
 
     Type type ( ) { return type; }
-    @Override
+    
     public int getSize ( ) { return type.getSize(); }
 
     static Value mkValue (Type type) {

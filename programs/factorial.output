@@ -1,0 +1,342 @@
+Begin parsing... programs/factorial.cpp
+
+Program (abstract syntax): 
+  Globals:
+  Declarations: 
+    {}
+  Functions: 
+    Function = factorial; Return type = int
+      params = 
+      Declarations: 
+        {<n, int>}
+      locals = 
+      Declarations: 
+        {}
+      Block: 
+        Conditional: 
+          Binary: 
+            Operator: <
+            Variable: n
+            IntValue: 2
+          Return: 
+            Variable: factorial
+            IntValue: 1
+          Return: 
+            Variable: factorial
+            Binary: 
+              Operator: *
+              Variable: n
+              Call: factorial
+                args = 
+                  Binary: 
+                    Operator: -
+                    Variable: n
+                    IntValue: 1
+
+    Function = main; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<f, int>}
+      Block: 
+        Assignment: 
+          Variable: f
+          Call: factorial
+            args = 
+              IntValue: 3
+
+
+Begin type checking...
+
+Transformed Abstract Syntax Tree
+
+Program (abstract syntax): 
+  Globals:
+  Declarations: 
+    {}
+  Functions: 
+    Function = factorial; Return type = int
+      params = 
+      Declarations: 
+        {<n, int>}
+      locals = 
+      Declarations: 
+        {}
+      Block: 
+        Conditional: 
+          Binary: 
+            Operator: INT<
+            Variable: n
+            IntValue: 2
+          Return: 
+            Variable: factorial
+            IntValue: 1
+          Return: 
+            Variable: factorial
+            Binary: 
+              Operator: INT*
+              Variable: n
+              Call: factorial
+                args = 
+                  Binary: 
+                    Operator: INT-
+                    Variable: n
+                    IntValue: 1
+
+    Function = main; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<f, int>}
+      Block: 
+        Assignment: 
+          Variable: f
+          Call: factorial
+            args = 
+              IntValue: 3
+
+
+Globals = { 
+}
+
+Function factorial = { 
+  <factorial(<n, int>), int>, 
+  <main(), int>, 
+  <n, int>
+}
+
+Function main = { 
+  <factorial(<n, int>), int>, 
+  <main(), int>, 
+  <f, int>
+}
+
+No type errors
+
+
+Begin interpreting... programs/factorial.cpp
+
+
+Allocated stack frame for function "main":
+------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           f                 int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "factorial":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           f                 int      undef
+    4           n                 int      3
+    8           factorial         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "factorial":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           f                 int      undef
+    4           n                 int      3
+    8           factorial         int      undef
+    12          n                 int      2
+    16          factorial         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "factorial":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           f                 int      undef
+    4           n                 int      3
+    8           factorial         int      undef
+    12          n                 int      2
+    16          factorial         int      undef
+    20          n                 int      1
+    24          factorial         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "factorial":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           f                 int      undef
+    4           n                 int      3
+    8           factorial         int      undef
+    12          n                 int      2
+    16          factorial         int      undef
+    20          n                 int      1
+    24          factorial         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "factorial":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           f                 int      undef
+    4           n                 int      3
+    8           factorial         int      undef
+    12          n                 int      2
+    16          factorial         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "factorial":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           f                 int      undef
+    4           n                 int      3
+    8           factorial         int      undef
+    12          n                 int      2
+    16          factorial         int      2
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "factorial":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           f                 int      undef
+    4           n                 int      3
+    8           factorial         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "factorial":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           f                 int      undef
+    4           n                 int      3
+    8           factorial         int      6
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "factorial":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           f                 int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "main":
+--------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           f                 int      6
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "main":
+--------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue

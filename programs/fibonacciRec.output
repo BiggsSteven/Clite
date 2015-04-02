@@ -1,0 +1,5426 @@
+Begin parsing... programs/fibonacciRec.cpp
+
+Program (abstract syntax): 
+  Globals:
+  Declarations: 
+    {}
+  Functions: 
+    Function = fibonacci; Return type = int
+      params = 
+      Declarations: 
+        {<n, int>}
+      locals = 
+      Declarations: 
+        {}
+      Block: 
+        Conditional: 
+          Binary: 
+            Operator: <
+            Variable: n
+            IntValue: 2
+          Return: 
+            Variable: fibonacci
+            Variable: n
+          Return: 
+            Variable: fibonacci
+            Binary: 
+              Operator: +
+              Call: fibonacci
+                args = 
+                  Binary: 
+                    Operator: -
+                    Variable: n
+                    IntValue: 1
+              Call: fibonacci
+                args = 
+                  Binary: 
+                    Operator: -
+                    Variable: n
+                    IntValue: 2
+
+    Function = main; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<answer, int>}
+      Block: 
+        Assignment: 
+          Variable: answer
+          Call: fibonacci
+            args = 
+              IntValue: 8
+
+
+Begin type checking...
+
+Transformed Abstract Syntax Tree
+
+Program (abstract syntax): 
+  Globals:
+  Declarations: 
+    {}
+  Functions: 
+    Function = fibonacci; Return type = int
+      params = 
+      Declarations: 
+        {<n, int>}
+      locals = 
+      Declarations: 
+        {}
+      Block: 
+        Conditional: 
+          Binary: 
+            Operator: INT<
+            Variable: n
+            IntValue: 2
+          Return: 
+            Variable: fibonacci
+            Variable: n
+          Return: 
+            Variable: fibonacci
+            Binary: 
+              Operator: INT+
+              Call: fibonacci
+                args = 
+                  Binary: 
+                    Operator: INT-
+                    Variable: n
+                    IntValue: 1
+              Call: fibonacci
+                args = 
+                  Binary: 
+                    Operator: INT-
+                    Variable: n
+                    IntValue: 2
+
+    Function = main; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<answer, int>}
+      Block: 
+        Assignment: 
+          Variable: answer
+          Call: fibonacci
+            args = 
+              IntValue: 8
+
+
+Globals = { 
+}
+
+Function fibonacci = { 
+  <fibonacci(<n, int>), int>, 
+  <main(), int>, 
+  <n, int>
+}
+
+Function main = { 
+  <fibonacci(<n, int>), int>, 
+  <answer, int>, 
+  <main(), int>
+}
+
+No type errors
+
+
+Begin interpreting... programs/fibonacciRec.cpp
+
+
+Allocated stack frame for function "main":
+------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      3
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      3
+    48          fibonacci         int      undef
+    52          n                 int      2
+    56          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      3
+    48          fibonacci         int      undef
+    52          n                 int      2
+    56          fibonacci         int      undef
+    60          n                 int      1
+    64          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      3
+    48          fibonacci         int      undef
+    52          n                 int      2
+    56          fibonacci         int      undef
+    60          n                 int      1
+    64          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      3
+    48          fibonacci         int      undef
+    52          n                 int      2
+    56          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      3
+    48          fibonacci         int      undef
+    52          n                 int      2
+    56          fibonacci         int      undef
+    60          n                 int      0
+    64          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      3
+    48          fibonacci         int      undef
+    52          n                 int      2
+    56          fibonacci         int      undef
+    60          n                 int      0
+    64          fibonacci         int      0
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      3
+    48          fibonacci         int      undef
+    52          n                 int      2
+    56          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      3
+    48          fibonacci         int      undef
+    52          n                 int      2
+    56          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      3
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      3
+    48          fibonacci         int      undef
+    52          n                 int      1
+    56          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      3
+    48          fibonacci         int      undef
+    52          n                 int      1
+    56          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      3
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      3
+    48          fibonacci         int      2
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      1
+    56          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      1
+    56          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      0
+    56          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      0
+    56          fibonacci         int      0
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      4
+    40          fibonacci         int      3
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      1
+    56          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      1
+    56          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      0
+    56          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      0
+    56          fibonacci         int      0
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      2
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      5
+    32          fibonacci         int      5
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      1
+    56          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      1
+    56          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      0
+    56          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      0
+    56          fibonacci         int      0
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      2
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      0
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      0
+    48          fibonacci         int      0
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      3
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      6
+    24          fibonacci         int      8
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      1
+    56          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      1
+    56          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      0
+    56          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      0
+    56          fibonacci         int      0
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      2
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      0
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      0
+    48          fibonacci         int      0
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      3
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      0
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      0
+    48          fibonacci         int      0
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      1
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      1
+    40          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      2
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      5
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      7
+    16          fibonacci         int      13
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      1
+    56          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      1
+    56          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      0
+    56          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+    52          n                 int      0
+    56          fibonacci         int      0
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      2
+    48          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      3
+    40          fibonacci         int      2
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      0
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      0
+    48          fibonacci         int      0
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      4
+    32          fibonacci         int      3
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      0
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      0
+    48          fibonacci         int      0
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      1
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      1
+    40          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      2
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      5
+    24          fibonacci         int      5
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      1
+    48          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      0
+    48          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+    44          n                 int      0
+    48          fibonacci         int      0
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      2
+    40          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      1
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+    36          n                 int      1
+    40          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      3
+    32          fibonacci         int      2
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      2
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      2
+    32          fibonacci         int      undef
+    36          n                 int      1
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      2
+    32          fibonacci         int      undef
+    36          n                 int      1
+    40          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      2
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "fibonacci":
+-----------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      2
+    32          fibonacci         int      undef
+    36          n                 int      0
+    40          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      2
+    32          fibonacci         int      undef
+    36          n                 int      0
+    40          fibonacci         int      0
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      2
+    32          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+    28          n                 int      2
+    32          fibonacci         int      1
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+    20          n                 int      4
+    24          fibonacci         int      3
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+    12          n                 int      6
+    16          fibonacci         int      8
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           n                 int      8
+    8           fibonacci         int      21
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "fibonacci":
+-------------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "main":
+--------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      21
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "main":
+--------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue

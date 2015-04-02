@@ -1,13 +1,21 @@
+char orig[5], sorted[5];
+
 int main ( ) {
-    char orig[5], sorted[5];
-	int count[5];
-	int n, i, j;
+	int n;
 	n = 5;
+
 	orig[0] = '2';
 	orig[1] = '9';
 	orig[2] = '5';
 	orig[3] = '0';
 	orig[4] = '6';
+	
+	sort(n);
+}
+
+void sort (int n) {
+	int count[5];
+	int i, j;
 	
 	i = 0;
 	while (i < n) {

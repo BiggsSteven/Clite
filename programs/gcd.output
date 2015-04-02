@@ -1,0 +1,592 @@
+Begin parsing... programs/gcd.cpp
+
+Program (abstract syntax): 
+  Globals:
+  Declarations: 
+    {}
+  Functions: 
+    Function = rem; Return type = int
+      params = 
+      Declarations: 
+        {<x, int>, <y, int>}
+      locals = 
+      Declarations: 
+        {}
+      Block: 
+        Return: 
+          Variable: rem
+          Binary: 
+            Operator: -
+            Variable: x
+            Binary: 
+              Operator: *
+              Binary: 
+                Operator: /
+                Variable: x
+                Variable: y
+              Variable: y
+
+    Function = gcd; Return type = int
+      params = 
+      Declarations: 
+        {<x, int>, <y, int>}
+      locals = 
+      Declarations: 
+        {<z, int>}
+      Block: 
+        Conditional: 
+          Binary: 
+            Operator: ==
+            Variable: y
+            IntValue: 0
+          Return: 
+            Variable: gcd
+            Variable: x
+          Conditional: 
+            Binary: 
+              Operator: ==
+              Variable: x
+              IntValue: 0
+            Return: 
+              Variable: gcd
+              Variable: y
+            Block: 
+              Assignment: 
+                Variable: z
+                Call: rem
+                  args = 
+                    Variable: x
+                    Variable: y
+              Return: 
+                Variable: gcd
+                Call: gcd
+                  args = 
+                    Variable: y
+                    Variable: z
+
+    Function = main; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<answer, int>}
+      Block: 
+        Assignment: 
+          Variable: answer
+          Call: gcd
+            args = 
+              IntValue: 60
+              IntValue: 24
+
+
+Begin type checking...
+
+Transformed Abstract Syntax Tree
+
+Program (abstract syntax): 
+  Globals:
+  Declarations: 
+    {}
+  Functions: 
+    Function = rem; Return type = int
+      params = 
+      Declarations: 
+        {<x, int>, <y, int>}
+      locals = 
+      Declarations: 
+        {}
+      Block: 
+        Return: 
+          Variable: rem
+          Binary: 
+            Operator: INT-
+            Variable: x
+            Binary: 
+              Operator: INT*
+              Binary: 
+                Operator: INT/
+                Variable: x
+                Variable: y
+              Variable: y
+
+    Function = gcd; Return type = int
+      params = 
+      Declarations: 
+        {<x, int>, <y, int>}
+      locals = 
+      Declarations: 
+        {<z, int>}
+      Block: 
+        Conditional: 
+          Binary: 
+            Operator: INT==
+            Variable: y
+            IntValue: 0
+          Return: 
+            Variable: gcd
+            Variable: x
+          Conditional: 
+            Binary: 
+              Operator: INT==
+              Variable: x
+              IntValue: 0
+            Return: 
+              Variable: gcd
+              Variable: y
+            Block: 
+              Assignment: 
+                Variable: z
+                Call: rem
+                  args = 
+                    Variable: x
+                    Variable: y
+              Return: 
+                Variable: gcd
+                Call: gcd
+                  args = 
+                    Variable: y
+                    Variable: z
+
+    Function = main; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<answer, int>}
+      Block: 
+        Assignment: 
+          Variable: answer
+          Call: gcd
+            args = 
+              IntValue: 60
+              IntValue: 24
+
+
+Globals = { 
+}
+
+Function rem = { 
+  <x, int>, 
+  <main(), int>, 
+  <y, int>, 
+  <rem(<x, int>, <y, int>), int>, 
+  <gcd(<x, int>, <y, int>), int>
+}
+
+Function gcd = { 
+  <x, int>, 
+  <main(), int>, 
+  <y, int>, 
+  <rem(<x, int>, <y, int>), int>, 
+  <z, int>, 
+  <gcd(<x, int>, <y, int>), int>
+}
+
+Function main = { 
+  <main(), int>, 
+  <rem(<x, int>, <y, int>), int>, 
+  <gcd(<x, int>, <y, int>), int>, 
+  <answer, int>
+}
+
+No type errors
+
+
+Begin interpreting... programs/gcd.cpp
+
+
+Allocated stack frame for function "main":
+------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "gcd":
+-----------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           x                 int      60
+    8           y                 int      24
+    12          z                 int      undef
+    16          gcd               int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "rem":
+-----------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           x                 int      60
+    8           y                 int      24
+    12          z                 int      undef
+    16          gcd               int      undef
+    20          x                 int      60
+    24          y                 int      24
+    28          rem               int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "rem":
+-------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           x                 int      60
+    8           y                 int      24
+    12          z                 int      undef
+    16          gcd               int      undef
+    20          x                 int      60
+    24          y                 int      24
+    28          rem               int      12
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "rem":
+-------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           x                 int      60
+    8           y                 int      24
+    12          z                 int      undef
+    16          gcd               int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "gcd":
+-----------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           x                 int      60
+    8           y                 int      24
+    12          z                 int      12
+    16          gcd               int      undef
+    20          x                 int      24
+    24          y                 int      12
+    28          z                 int      undef
+    32          gcd               int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "rem":
+-----------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           x                 int      60
+    8           y                 int      24
+    12          z                 int      12
+    16          gcd               int      undef
+    20          x                 int      24
+    24          y                 int      12
+    28          z                 int      undef
+    32          gcd               int      undef
+    36          x                 int      24
+    40          y                 int      12
+    44          rem               int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "rem":
+-------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           x                 int      60
+    8           y                 int      24
+    12          z                 int      12
+    16          gcd               int      undef
+    20          x                 int      24
+    24          y                 int      12
+    28          z                 int      undef
+    32          gcd               int      undef
+    36          x                 int      24
+    40          y                 int      12
+    44          rem               int      0
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "rem":
+-------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           x                 int      60
+    8           y                 int      24
+    12          z                 int      12
+    16          gcd               int      undef
+    20          x                 int      24
+    24          y                 int      12
+    28          z                 int      undef
+    32          gcd               int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Allocated stack frame for function "gcd":
+-----------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           x                 int      60
+    8           y                 int      24
+    12          z                 int      12
+    16          gcd               int      undef
+    20          x                 int      24
+    24          y                 int      12
+    28          z                 int      0
+    32          gcd               int      undef
+    36          x                 int      12
+    40          y                 int      0
+    44          z                 int      undef
+    48          gcd               int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "gcd":
+-------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           x                 int      60
+    8           y                 int      24
+    12          z                 int      12
+    16          gcd               int      undef
+    20          x                 int      24
+    24          y                 int      12
+    28          z                 int      0
+    32          gcd               int      undef
+    36          x                 int      12
+    40          y                 int      0
+    44          z                 int      undef
+    48          gcd               int      12
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "gcd":
+-------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           x                 int      60
+    8           y                 int      24
+    12          z                 int      12
+    16          gcd               int      undef
+    20          x                 int      24
+    24          y                 int      12
+    28          z                 int      0
+    32          gcd               int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "gcd":
+-------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           x                 int      60
+    8           y                 int      24
+    12          z                 int      12
+    16          gcd               int      undef
+    20          x                 int      24
+    24          y                 int      12
+    28          z                 int      0
+    32          gcd               int      12
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "gcd":
+-------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           x                 int      60
+    8           y                 int      24
+    12          z                 int      12
+    16          gcd               int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "gcd":
+-------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+    4           x                 int      60
+    8           y                 int      24
+    12          z                 int      12
+    16          gcd               int      12
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "gcd":
+-------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      undef
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Interpreting the meaning of function "main":
+--------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           answer            int      12
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+
+Deallocated stack frame for function "main":
+--------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue

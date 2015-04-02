@@ -47,6 +47,9 @@ public class Token {
     public static final Token modulusTok = new Token(TokenType.Modulus, "%");
     public static final Token andTok = new Token(TokenType.And, "&&");
     public static final Token orTok = new Token(TokenType.Or, "||");
+    
+    public static final Token voidTok = new Token(TokenType.Void, "void");
+    public static final Token returnTok = new Token(TokenType.Return, "return");
 
     private TokenType type;
     private String value = "";

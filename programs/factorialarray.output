@@ -1,106 +1,155 @@
 Begin parsing... programs/factorialarray.cpp
 
 Program (abstract syntax): 
+  Globals:
   Declarations: 
-    Declarations = {<n, int>, <i, int>, <j, int>, <f[6], int>, <k, int>}
-  Block: 
-    Assignment: 
-      Variable: n
-      IntValue: 5
-    Assignment: 
-      Variable: i
-      IntValue: 1
-    Assignment: 
-      Variable: j
-      IntValue: 0
-    Assignment: 
-      ArrayRef: f[0]
-      IntValue: 1
-    Assignment: 
-      ArrayRef: f[1]
-      IntValue: 1
-    Loop: 
-      Binary: 
-        Operator: <
-        Variable: i
-        Variable: n
+    {}
+  Functions: 
+    Function = main; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<n, int>, <i, int>, <j, int>, <f[6], int>}
       Block: 
         Assignment: 
+          Variable: n
+          IntValue: 5
+        Assignment: 
+          Variable: i
+          IntValue: 1
+        Assignment: 
           Variable: j
-          Variable: i
+          IntValue: 0
         Assignment: 
-          Variable: i
-          Binary: 
-            Operator: +
-            Variable: i
-            IntValue: 1
+          ArrayRef: f[0]
+          IntValue: 1
         Assignment: 
-          ArrayRef: f[i]
+          ArrayRef: f[1]
+          IntValue: 1
+        Loop: 
           Binary: 
-            Operator: *
-            ArrayRef: f[j]
+            Operator: <
             Variable: i
+            Variable: n
+          Block: 
+            Assignment: 
+              Variable: j
+              Variable: i
+            Assignment: 
+              Variable: i
+              Binary: 
+                Operator: +
+                Variable: i
+                IntValue: 1
+            Assignment: 
+              ArrayRef: f[i]
+              Binary: 
+                Operator: *
+                ArrayRef: f[j]
+                Variable: i
+
 
 Begin type checking...
-
-Type map:
-{ <f[6], int>, <i, int>, <j, int>, <k, int>, <n, int> }
 
 Transformed Abstract Syntax Tree
 
 Program (abstract syntax): 
+  Globals:
   Declarations: 
-    Declarations = {<n, int>, <i, int>, <j, int>, <f[6], int>, <k, int>}
-  Block: 
-    Assignment: 
-      Variable: n
-      IntValue: 5
-    Assignment: 
-      Variable: i
-      IntValue: 1
-    Assignment: 
-      Variable: j
-      IntValue: 0
-    Assignment: 
-      ArrayRef: f[0]
-      IntValue: 1
-    Assignment: 
-      ArrayRef: f[1]
-      IntValue: 1
-    Loop: 
-      Binary: 
-        Operator: INT<
-        Variable: i
-        Variable: n
+    {}
+  Functions: 
+    Function = main; Return type = int
+      params = 
+      Declarations: 
+        {}
+      locals = 
+      Declarations: 
+        {<n, int>, <i, int>, <j, int>, <f[6], int>}
       Block: 
         Assignment: 
+          Variable: n
+          IntValue: 5
+        Assignment: 
+          Variable: i
+          IntValue: 1
+        Assignment: 
           Variable: j
-          Variable: i
+          IntValue: 0
         Assignment: 
-          Variable: i
-          Binary: 
-            Operator: INT+
-            Variable: i
-            IntValue: 1
+          ArrayRef: f[0]
+          IntValue: 1
         Assignment: 
-          ArrayRef: f[i]
+          ArrayRef: f[1]
+          IntValue: 1
+        Loop: 
           Binary: 
-            Operator: INT*
-            ArrayRef: f[j]
+            Operator: INT<
             Variable: i
+            Variable: n
+          Block: 
+            Assignment: 
+              Variable: j
+              Variable: i
+            Assignment: 
+              Variable: i
+              Binary: 
+                Operator: INT+
+                Variable: i
+                IntValue: 1
+            Assignment: 
+              ArrayRef: f[i]
+              Binary: 
+                Operator: INT*
+                ArrayRef: f[j]
+                Variable: i
+
+
+Globals = { 
+}
+
+Function main = { 
+  <i, int>, 
+  <main(), int>, 
+  <j, int>, 
+  <f[6], int>, 
+  <n, int>
+}
+
+No type errors
+
 
 Begin interpreting... programs/factorialarray.cpp
 
-Final State
 
-Environment:
+Allocated stack frame for function "main":
+------------------------------------------
 
-    VariableRef  MemoryAddr  MemoryValue(from Memory)
-    f[6]         12          DopeVector{addr[0]=512, size=24, type=int}
-    i            4           5
-    j            8           4
-    k            24          undef
-    n            0           5
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    0           n                 int      undef
+    4           i                 int      undef
+    8           j                 int      undef
+    12          f[6]              int      DopeVector{addr[0]=512, size=24, type=int}
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+    512         f[0]              int      undef
+    516         f[4]              int      undef
+    520         f[8]              int      undef
+    524         f[12]             int      undef
+    528         f[16]             int      undef
+    532         f[20]             int      undef
+
+
+Interpreting the meaning of function "main":
+--------------------------------------------
 
 Memory:
 
@@ -113,7 +162,6 @@ Memory:
     4           i                 int      5
     8           j                 int      4
     12          f[6]              int      DopeVector{addr[0]=512, size=24, type=int}
-    24          k                 int      undef
 
   Heap area:
     MemoryAddr  VarRef(from Env)  Type     MemoryValue
@@ -123,3 +171,18 @@ Memory:
     524         f[12]             int      6
     528         f[16]             int      24
     532         f[20]             int      120
+
+
+Deallocated stack frame for function "main":
+--------------------------------------------
+
+Memory:
+
+  Static area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Runtime Stack area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
+
+  Heap area:
+    MemoryAddr  VarRef(from Env)  Type     MemoryValue
