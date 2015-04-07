@@ -44,20 +44,32 @@ public class Parser {
         Declarations globals = new Declarations();
         Functions functions = new Functions();
         
-        Type t = type();
-        String id;
-        while(!(token.type().equals(TokenType.Main))){
-            id = match(TokenType.Identifier);
-            if (token.type().equals(TokenType.LeftParen)){
-                functions.add(function(t,id));
+
+        
+        boolean mainUnused = true;
+        while(!(token.type().equals(TokenType.Eof))){
+            Type t = type();
+            String id;
+            if (token.type().equals(TokenType.Main)){
+                if (mainUnused == true){
+                    id = match(TokenType.Main);
+                    functions.add(mainFunction(t, id));
+                    mainUnused = false;
+                }else{ 
+                    error("Illegal MainFunction");
+                }
             }
             else{
-                globalDecs(globals, t, id);
-            } 
-            t = type();
+                id = match(TokenType.Identifier);
+                if (token.type().equals(TokenType.LeftParen)){
+                    functions.add(function(t,id));
+                }
+                else{
+                    globalDecs(globals, t, id);
+                } 
+            }
         }
-        id = match(TokenType.Main);
-        functions.add(mainFunction(t, id));
+        
         return new Program(globals, functions);
     }
     
