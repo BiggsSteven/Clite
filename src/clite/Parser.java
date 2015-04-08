@@ -44,20 +44,12 @@ public class Parser {
         Declarations globals = new Declarations();
         Functions functions = new Functions();
         
-
-        
-        boolean mainUnused = true;
         while(!(token.type().equals(TokenType.Eof))){
             Type t = type();
             String id;
             if (token.type().equals(TokenType.Main)){
-                if (mainUnused == true){
-                    id = match(TokenType.Main);
-                    functions.add(mainFunction(t, id));
-                    mainUnused = false;
-                }else{ 
-                    error("Illegal MainFunction");
-                }
+                id = match(TokenType.Main);
+                functions.add(mainFunction(t, id));
             }
             else{
                 id = match(TokenType.Identifier);
