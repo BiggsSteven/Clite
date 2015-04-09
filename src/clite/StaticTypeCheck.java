@@ -55,12 +55,13 @@ public class StaticTypeCheck {
     
     public static void V(Program p, TypeMap GM) {
         System.out.println("Globals = {");
-        GM.display(null);
+        GM.display(null,functionMap);
         dtFunction.addAll(p.functions);
         //Rule 10.1
         Declarations ds = new Declarations();
         ds.addAll(p.globals);
         for (int i=0; i<p.functions.size(); i++) {
+            
             Variable fl = new Variable(p.functions.get(i).id);
             ds.add(new VariableDecl(fl, p.functions.get(i).type));
             functionMap.put(fl, p.functions.get(i).type);
@@ -82,7 +83,9 @@ public class StaticTypeCheck {
             fMap.putAll(typing(func.locals));
             
             V(func, fMap);
-            fMap.display(f);
+            fMap.putAll(functionMap);
+            System.out.println("Function " + func.id + " = {");
+            fMap.display(f,functionMap);
         }
     }
     

@@ -7,7 +7,7 @@ package clite;
 public class Main {
 
     public static void main(String[] args) {
-        String filename = "programs/functions.cpp";
+        String filename = "programs/gcd.cpp";
     	System.out.println("Begin parsing... " + filename);
     	Parser parser  = new Parser(new Lexer(filename));
         Program prog = parser.program();
@@ -21,7 +21,7 @@ public class Main {
         System.out.println("\nTransformed Abstract Syntax Tree");
         out.display();      // display transformed abstract syntax tree
         StaticTypeCheck.V(out, map); // type check the transformed AST
-//        System.out.println("\nBegin interpreting... " + filename);
+        System.out.println("\nBegin interpreting... " + filename);
 //        Semantics semantics = new Semantics( );
 //        State state = semantics.M(out);
 //        System.out.println("\nFinal State");

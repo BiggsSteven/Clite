@@ -57,7 +57,7 @@ class Functions extends ArrayList<Function>{
     }
 }
 
-class Function {
+class Function{
     Type type;
     String id;
     Declarations params;
