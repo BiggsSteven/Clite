@@ -7,7 +7,7 @@ package clite;
 public class Main {
 
     public static void main(String[] args) {
-        String filename = "programs/sort2.cpp";
+        String filename = "programs/functions.cpp";
     	System.out.println("Begin parsing... " + filename);
     	Parser parser  = new Parser(new Lexer(filename));
         Program prog = parser.program();
@@ -16,6 +16,7 @@ public class Main {
         System.out.println("\nBegin type checking...");
         TypeMap map = StaticTypeCheck.typing(prog.globals);
         map.display();
+        StaticTypeCheck.V(prog, map);
 //
 //        Program out = TypeTransformer.T(prog, map);
 //        System.out.println("\nTransformed Abstract Syntax Tree");
