@@ -15,14 +15,12 @@ public class Main {
 
         System.out.println("\nBegin type checking...");
         TypeMap map = StaticTypeCheck.typing(prog.globals);
-        map.display();
         //StaticTypeCheck.V(prog, map);
 //
         Program out = TypeTransformer.T(prog, map);
-//        System.out.println("\nTransformed Abstract Syntax Tree");
-//        out.display();      // display transformed abstract syntax tree
-//        StaticTypeCheck.V(out); // type check the transformed AST
-//
+        System.out.println("\nTransformed Abstract Syntax Tree");
+        out.display();      // display transformed abstract syntax tree
+        StaticTypeCheck.V(out, map); // type check the transformed AST
 //        System.out.println("\nBegin interpreting... " + filename);
 //        Semantics semantics = new Semantics( );
 //        State state = semantics.M(out);

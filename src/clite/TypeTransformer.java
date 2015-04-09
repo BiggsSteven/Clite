@@ -109,9 +109,9 @@ public class TypeTransformer {
                     
                     for(int i = 0; i < c.arg.size(); i++){
                         Type ti = ((Type)func.params.get(i).t);
-                        Type tj = StaticTypeCheck.typeOf(c.arg.get(i),tm); 
+                        Type tj = StaticTypeCheck.typeOf(c.arg.get(i),tm, functionMap); 
                         StaticTypeCheck.check(ti.equals(tj)
-                                , func.params.get(i).t + " is not equal to " + StaticTypeCheck.typeOf(c.arg.get(i),tm));
+                                , func.params.get(i).t + " is not equal to " + StaticTypeCheck.typeOf(c.arg.get(i),tm, functionMap));
                     }
                 }
                 return c;
@@ -120,8 +120,8 @@ public class TypeTransformer {
         }
         if (e instanceof Binary) {
             Binary b = (Binary)e;
-            Type typ1 = StaticTypeCheck.typeOf(b.term1, tm);
-            Type typ2 = StaticTypeCheck.typeOf(b.term2, tm);
+            Type typ1 = StaticTypeCheck.typeOf(b.term1, tm, functionMap);
+            Type typ2 = StaticTypeCheck.typeOf(b.term2, tm, functionMap);
             Expression t1 = T (b.term1, tm);
             Expression t2 = T (b.term2, tm);
 //            if (typ1 == Type.INT)
@@ -179,7 +179,7 @@ public class TypeTransformer {
 //                throw new IllegalArgumentException("should never reach here");
 //            }
 //            return new Unary(op, term);
-            Type type = StaticTypeCheck.typeOf(u.term, tm);
+            Type type = StaticTypeCheck.typeOf(u.term, tm, functionMap);
             Expression term = T(u.term, tm);
             if (type == Type.FLOAT)
                 return new Unary(u.op.floatMap(u.op.val), term);
@@ -203,7 +203,7 @@ public class TypeTransformer {
             VariableRef target = a.target;
             Expression src = T (a.source, tm);
             Type ttype = (Type)tm.get(a.target);
-            Type srctype = StaticTypeCheck.typeOf(a.source, tm);
+            Type srctype = StaticTypeCheck.typeOf(a.source, tm, functionMap);
             if (ttype == Type.FLOAT) {
                 if (srctype == Type.INT) {
                     src = new Unary(new Operator(Operator.I2F), src);
@@ -248,13 +248,28 @@ public class TypeTransformer {
             Return r = (Return)s;
             //Rule 10.4
             Return q = new Return(r.target,T(r.returned,tm));
-            StaticTypeCheck.check(returnType.equals(StaticTypeCheck.typeOf(q.returned,tm)),
+            StaticTypeCheck.check(returnType.equals(StaticTypeCheck.typeOf(q.returned,tm, functionMap)),
                 "The returned type does not match the fuction type;");
             returnFound = true;
             return q;
         }
         if (s instanceof StatementCall){
-            
+            StatementCall c = (StatementCall)s;
+            StaticTypeCheck.check((functionMap.get(new Variable(c.id))).equals(Type.VOID),
+                    "Statement Calls can only be to Void statements");
+            for (Function func : dtFunction){
+                if (func.id.equals(c.id)){
+                    StaticTypeCheck.check (c.arg.size() == func.params.size(),
+                            "Arguments and Parameters are different size.");
+                    for(int i = 0; i < c.arg.size(); i++){
+                        Type ti =((Type)func.params.get(i).t);
+                        Type tj = StaticTypeCheck.typeOf(c.arg.get(i),tm, functionMap); 
+                        StaticTypeCheck.check(ti.equals(tj)
+                                , func.params.get(i).t + " is not equal to " + StaticTypeCheck.typeOf(c.arg.get(i),tm, functionMap));
+                    }
+                }
+            }
+            return c;
         }
         throw new IllegalArgumentException("should never reach here");
     }

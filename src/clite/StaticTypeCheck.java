@@ -54,6 +54,8 @@ public class StaticTypeCheck {
     }
     
     public static void V(Program p, TypeMap GM) {
+        System.out.println("Globals = {");
+        GM.display(null);
         dtFunction.addAll(p.functions);
         //Rule 10.1
         Declarations ds = new Declarations();
@@ -80,6 +82,7 @@ public class StaticTypeCheck {
             fMap.putAll(typing(func.locals));
             
             V(func, fMap);
+            fMap.display(f);
         }
     }
     
@@ -105,7 +108,7 @@ public class StaticTypeCheck {
             V(a.target, tm);
             V(a.source, tm);
             Type ttype = (Type)tm.get(a.target);
-            Type srctype = typeOf(a.source, tm);
+            Type srctype = typeOf(a.source, tm, functionMap);
             if (ttype != srctype) {
                 if (ttype == Type.FLOAT)
                     check( srctype == Type.INT
@@ -122,7 +125,7 @@ public class StaticTypeCheck {
         if (s instanceof Conditional) {
             Conditional c = (Conditional)s;
             V (c.test, tm);
-            check( typeOf(c.test, tm)== Type.BOOL ,
+            check( typeOf(c.test, tm, functionMap)== Type.BOOL ,
                    "non-bool test in conditional");
             V (c.thenbranch, tm);
             V (c.elsebranch, tm);
@@ -131,7 +134,7 @@ public class StaticTypeCheck {
         if (s instanceof Loop) {
             Loop l = (Loop)s;
             V (l.test, tm);
-            check(  typeOf(l.test, tm)== Type.BOOL ,
+            check(  typeOf(l.test, tm, functionMap)== Type.BOOL ,
                     "loop has non-bool test");
             V (l.body, tm);
             return;
@@ -149,7 +152,7 @@ public class StaticTypeCheck {
                 "Return is not a valid Statement in a Void Function");
             Return r = (Return)s;
             //Rule 10.4
-            check(returnType.equals(typeOf(r.returned,tm)),
+            check(returnType.equals(typeOf(r.returned,tm, functionMap)),
                 "The returned type does not match the fuction type;");
             returnFound = true;
             return;
@@ -164,12 +167,13 @@ public class StaticTypeCheck {
                             "Arguments and Parameters are different size.");
                     for(int i = 0; i < c.arg.size(); i++){
                         Type ti =((Type)func.params.get(i).t);
-                        Type tj = typeOf(c.arg.get(i),tm); 
+                        Type tj = typeOf(c.arg.get(i),tm, functionMap); 
                         check(ti.equals(tj)
-                                , func.params.get(i).t + " is not equal to " + typeOf(c.arg.get(i),tm));
+                                , func.params.get(i).t + " is not equal to " + typeOf(c.arg.get(i),tm, functionMap));
                     }
                 }
             }
+            return;
         }
         throw new IllegalArgumentException("should never reach here");
     }
@@ -185,7 +189,7 @@ public class StaticTypeCheck {
         if (e instanceof ArrayRef) {
             ArrayRef a = (ArrayRef)e;
             check( tm.containsKey(a), "undefined array reference: " + a);
-            check( typeOf(a.index, tm) == Type.INT, "invalid array reference: " + a);
+            check( typeOf(a.index, tm, functionMap) == Type.INT, "invalid array reference: " + a);
             return;
         }
         if (e instanceof ExpressionCall){
@@ -198,9 +202,9 @@ public class StaticTypeCheck {
                             "Arguments and Parameters are different size.");
                     for(int i = 0; i < c.arg.size(); i++){
                         Type ti =((Type)func.params.get(i).t);
-                        Type tj = typeOf(c.arg.get(i),tm); 
+                        Type tj = typeOf(c.arg.get(i),tm, functionMap); 
                         check(ti.equals(tj)
-                                , func.params.get(i).t + " is not equal to " + typeOf(c.arg.get(i),tm));
+                                , func.params.get(i).t + " is not equal to " + typeOf(c.arg.get(i),tm, functionMap));
                     }
                 }
             }
@@ -208,8 +212,8 @@ public class StaticTypeCheck {
         }
         if (e instanceof Binary) {
             Binary b = (Binary) e;
-            Type typ1 = typeOf(b.term1, tm);
-            Type typ2 = typeOf(b.term2, tm);
+            Type typ1 = typeOf(b.term1, tm, functionMap);
+            Type typ2 = typeOf(b.term2, tm, functionMap);
             V (b.term1, tm);
             V (b.term2, tm);
             if (b.op.ArithmeticOp( ))
@@ -231,7 +235,7 @@ public class StaticTypeCheck {
         }
         if (e instanceof Unary) {
             Unary u = (Unary) e;
-            Type typ1 = typeOf(u.term, tm);
+            Type typ1 = typeOf(u.term, tm, functionMap);
             V(u.term, tm);
             if (u.op.NotOp())
                 check( typ1 == Type.BOOL , "! has non-bool operand");
@@ -259,8 +263,8 @@ public class StaticTypeCheck {
         }
         throw new IllegalArgumentException("should never reach here");
     }
-
-    public static Type typeOf (Expression e, TypeMap tm) {
+    
+    public static Type typeOf (Expression e, TypeMap tm, TypeMap fm) {
         if (e instanceof Value) return ((Value)e).type;
         if (e instanceof Variable) {
             Variable v = (Variable)e;
@@ -274,13 +278,17 @@ public class StaticTypeCheck {
         }
         if (e instanceof ExpressionCall){
             ExpressionCall c = (ExpressionCall)e;
+            if (functionMap.isEmpty()){
+               functionMap = new TypeMap();
+               functionMap.putAll(fm);
+            }
             check (functionMap.containsKey(new Variable(c.id)), "undefined variable: " + c.id);
             return (Type) functionMap.get(new Variable(c.id));
         }
         if (e instanceof Binary) {
             Binary b = (Binary)e;
             if (b.op.ArithmeticOp( ))
-                if (typeOf(b.term1,tm)== Type.FLOAT)
+                if (typeOf(b.term1,tm, functionMap)== Type.FLOAT)
                     return (Type.FLOAT);
                 else return (Type.INT);
             if (b.op.RelationalOp( ) || b.op.BooleanOp( ))
@@ -289,7 +297,7 @@ public class StaticTypeCheck {
         if (e instanceof Unary) {
             Unary u = (Unary)e;
             if (u.op.NotOp( ))        return (Type.BOOL);
-            else if (u.op.NegateOp( )) return typeOf(u.term,tm);
+            else if (u.op.NegateOp( )) return typeOf(u.term,tm , functionMap);
             else if (u.op.intOp( ))    return (Type.INT);
             else if (u.op.floatOp( )) return (Type.FLOAT);
             else if (u.op.charOp( ))  return (Type.CHAR);

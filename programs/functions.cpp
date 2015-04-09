@@ -1,9 +1,8 @@
 int h, i;
 
-int A(int x, int y) {
-	int i,  j;
-	i = 2;
-	return 2;
+void A(int x, int y) {
+	bool i,  j;
+	B(h);
 }
 
 void B(int w) {
@@ -15,6 +14,6 @@ void B(int w) {
 int main () {
 	int a, b;
 	h = 5; a = 3; b = 2;
-	a = A(a, b);
+	A(a, b);
 }
 
