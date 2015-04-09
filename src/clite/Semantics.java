@@ -11,7 +11,9 @@ public class Semantics {
 
     State M (Program p) {
         //Program = Declarations decpart; Block body
-        return M (p.body, initialState(p.decpart));
+        //return M (p.body, initialState(p.decpart));
+        
+        return initialState(p.globals);
     }
 
     State initialState (Declarations d) {
@@ -239,26 +241,26 @@ public class Semantics {
         throw new IllegalArgumentException("should never reach here");
     }
 
-    public static void main(String args[]) {
-    	System.out.println("Begin parsing... " + args[0]);
-    	Parser parser  = new Parser(new Lexer(args[0]));
-        Program prog = parser.program();
-        prog.display();
-
-        System.out.println("\nBegin type checking..." + args[0]);
-        System.out.println("\nType map:");
-        TypeMap map = StaticTypeCheck.typing(prog.decpart);
-        map.display();
-
-        StaticTypeCheck.V(prog);
-        Program out = TypeTransformer.T(prog, map);
-        System.out.println("\nTransformed Abstract Syntax Tree");
-        out.display();
-
-        System.out.println("\nBegin interpreting..." + args[0]);
-        Semantics semantics = new Semantics( );
-        State state = semantics.M(out);
-        System.out.println("\nFinal State");
-        state.display( );
-    }
+//    public static void main(String args[]) {
+//    	System.out.println("Begin parsing... " + args[0]);
+//    	Parser parser  = new Parser(new Lexer(args[0]));
+//        Program prog = parser.program();
+//        prog.display();
+//
+//        System.out.println("\nBegin type checking..." + args[0]);
+//        System.out.println("\nType map:");
+//        TypeMap map = StaticTypeCheck.typing(prog.decpart);
+//        map.display();
+//
+//        StaticTypeCheck.V(prog);
+//        Program out = TypeTransformer.T(prog, map);
+//        System.out.println("\nTransformed Abstract Syntax Tree");
+//        out.display();
+//
+//        System.out.println("\nBegin interpreting..." + args[0]);
+//        Semantics semantics = new Semantics( );
+//        State state = semantics.M(out);
+//        System.out.println("\nFinal State");
+//        state.display( );
+//    }
 }
