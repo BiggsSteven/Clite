@@ -10,7 +10,7 @@ int A(int x, int y) {
 void B(int w) {
 	int j, k;
 	i = 2*w;
-	w = w + 1;  
+	w = w + 1;
 }
 
 int main () {

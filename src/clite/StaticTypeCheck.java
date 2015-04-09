@@ -52,7 +52,7 @@ public class StaticTypeCheck {
     }
     
     public static void V(Program p, TypeMap GM) {
-        //Rule 6.1
+        //Rule 10.1
         Declarations ds = new Declarations();
         ds.addAll(p.globals);
         for (int i=0; i<p.functions.size(); i++) {
@@ -60,11 +60,11 @@ public class StaticTypeCheck {
             ds.add(new VariableDecl(fl, p.functions.get(i).type));
         }
         V(ds);
-        //Rule 6.2
+        //Rule 10.2
         for (Function func : p.functions){
             V(func);
         }
-        //Rule 6.3
+        //Rule 10.3
         V(p.functions,GM);
     }
 
@@ -85,8 +85,11 @@ public class StaticTypeCheck {
         V(f.body,tm);
 
         //Rule 10.4
-        check((!(returnType.equals(TokenType.Void)) && returnFound == false && !f.id.equals(TokenType.Main)),
+
+        if (!(returnType.equals(Type.VOID)) && !f.id.equals("main")){
+            check((returnFound == true),
                 f.id + " is a non-Void function with no Return Statement");
+        }
     }
     
     public static void V (Statement s, TypeMap tm) {
@@ -137,15 +140,15 @@ public class StaticTypeCheck {
         }
         if (s instanceof Return)
         {
-            if (returnType.equals(TokenType.Void))    
-                    System.err.println("Return is not a valid Statement in a Void Function");
-            else{
-                Return r = (Return)s;
-                //Rule 10.4
-                check(returnType.equals(typeOf(r.returned,tm)),
-                        "The returned type does not match the fuction type;");
-                returnFound = true;
-            }
+            //Rule 10.5
+            check(!(returnType.equals(Type.VOID)),    
+                "Return is not a valid Statement in a Void Function");
+            Return r = (Return)s;
+            //Rule 10.4
+            check(returnType.equals(typeOf(r.returned,tm)),
+                "The returned type does not match the fuction type;");
+            returnFound = true;
+            return;
         }
         if (s instanceof StatementCall) {
             StatementCall c = (StatementCall)s;
