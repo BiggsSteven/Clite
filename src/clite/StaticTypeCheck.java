@@ -8,8 +8,10 @@
 package clite;
 
 public class StaticTypeCheck {
-    private static boolean isReturning = false;
-
+    private static Type returnType;
+    private static boolean returnFound = false;
+    
+    
     public static TypeMap typing (Declarations d) {
         TypeMap map = new TypeMap();
         for (Declaration di : d)
@@ -49,24 +51,6 @@ public class StaticTypeCheck {
         V(ds); 
     }
     
-    public static void V (Functions f, TypeMap tm) {
-        for (Function func : f) {
-            TypeMap functionMap = new TypeMap();
-            functionMap.putAll(tm);
-            functionMap.putAll(typing(func.params));
-            functionMap.putAll(typing(func.locals));
-            
-            V(func,f, functionMap);
-        }
-    }
-    public static void V(Function f, Functions fs, TypeMap tm){
-        isReturning = false;
-        
-        for (int j=0; j < f.body.members.size(); j++) {
-            Statement s = (Statement) f.body.members.get(j);
-        }
-    }
-    
     public static void V(Program p, TypeMap GM) {
         //Rule 6.1
         Declarations ds = new Declarations();
@@ -84,6 +68,27 @@ public class StaticTypeCheck {
         V(p.functions,GM);
     }
 
+    public static void V (Functions f, TypeMap tm) {
+        for (Function func : f) {
+            TypeMap functionMap = new TypeMap();
+            functionMap.putAll(tm);
+            functionMap.putAll(typing(func.params));
+            functionMap.putAll(typing(func.locals));
+            
+            V(func, functionMap);
+        }
+    }
+    
+    public static void V(Function f, TypeMap tm){
+        returnType = f.type;
+        returnFound = false;
+        V(f.body,tm);
+
+        //Rule 10.4
+        check((!(returnType.equals(TokenType.Void)) && returnFound == false && !f.id.equals(TokenType.Main)),
+                f.id + " is a non-Void function with no Return Statement");
+    }
+    
     public static void V (Statement s, TypeMap tm) {
         if ( s == null )
             throw new IllegalArgumentException( "AST error: null statement");
@@ -129,6 +134,18 @@ public class StaticTypeCheck {
             for (int j=0; j < b.members.size(); j++)
                 V((Statement)(b.members.get(j)), tm);
             return;
+        }
+        if (s instanceof Return)
+        {
+            if (returnType.equals(TokenType.Void))    
+                    System.err.println("Return is not a valid Statement in a Void Function");
+            else{
+                Return r = (Return)s;
+                //Rule 10.4
+                check(returnType.equals(typeOf(r.returned,tm)),
+                        "The returned type does not match the fuction type;");
+                returnFound = true;
+            }
         }
         if (s instanceof StatementCall) {
             StatementCall c = (StatementCall)s;
