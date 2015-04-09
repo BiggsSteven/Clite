@@ -16,5 +16,6 @@ void B(int w) {
 int main () {
 	int a, b;
 	h = 5; a = 3; b = 2;
+	B(a);
 }
 

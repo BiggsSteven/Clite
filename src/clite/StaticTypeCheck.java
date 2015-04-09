@@ -10,6 +10,7 @@ package clite;
 public class StaticTypeCheck {
     private static Type returnType;
     private static boolean returnFound = false;
+    private static TypeMap functionMap = new TypeMap();
     
     
     public static TypeMap typing (Declarations d) {
@@ -58,6 +59,7 @@ public class StaticTypeCheck {
         for (int i=0; i<p.functions.size(); i++) {
             Variable fl = new Variable(p.functions.get(i).id);
             ds.add(new VariableDecl(fl, p.functions.get(i).type));
+            functionMap.put(fl, p.functions.get(i).type);
         }
         V(ds);
         //Rule 10.2
@@ -70,12 +72,12 @@ public class StaticTypeCheck {
 
     public static void V (Functions f, TypeMap tm) {
         for (Function func : f) {
-            TypeMap functionMap = new TypeMap();
-            functionMap.putAll(tm);
-            functionMap.putAll(typing(func.params));
-            functionMap.putAll(typing(func.locals));
+            TypeMap fMap = new TypeMap();
+            fMap.putAll(tm);
+            fMap.putAll(typing(func.params));
+            fMap.putAll(typing(func.locals));
             
-            V(func, functionMap);
+            V(func, fMap);
         }
     }
     
@@ -152,6 +154,9 @@ public class StaticTypeCheck {
         }
         if (s instanceof StatementCall) {
             StatementCall c = (StatementCall)s;
+            check((functionMap.get(new Variable(c.id))).equals(Type.VOID),
+                    "Statement Calls can only be to Void statements");
+            
             for(Expression e : c.arg){
                 V(e,tm);
             }
