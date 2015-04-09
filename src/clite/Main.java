@@ -16,9 +16,9 @@ public class Main {
         System.out.println("\nBegin type checking...");
         TypeMap map = StaticTypeCheck.typing(prog.globals);
         map.display();
-        StaticTypeCheck.V(prog, map);
+        //StaticTypeCheck.V(prog, map);
 //
-//        Program out = TypeTransformer.T(prog, map);
+        Program out = TypeTransformer.T(prog, map);
 //        System.out.println("\nTransformed Abstract Syntax Tree");
 //        out.display();      // display transformed abstract syntax tree
 //        StaticTypeCheck.V(out); // type check the transformed AST

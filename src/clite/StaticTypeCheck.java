@@ -11,6 +11,7 @@ public class StaticTypeCheck {
     private static Type returnType;
     private static boolean returnFound = false;
     private static TypeMap functionMap = new TypeMap();
+    private static Functions dtFunction = new Functions();
     
     
     public static TypeMap typing (Declarations d) {
@@ -53,6 +54,7 @@ public class StaticTypeCheck {
     }
     
     public static void V(Program p, TypeMap GM) {
+        dtFunction.addAll(p.functions);
         //Rule 10.1
         Declarations ds = new Declarations();
         ds.addAll(p.globals);
@@ -156,9 +158,17 @@ public class StaticTypeCheck {
             StatementCall c = (StatementCall)s;
             check((functionMap.get(new Variable(c.id))).equals(Type.VOID),
                     "Statement Calls can only be to Void statements");
-            
-            for(Expression e : c.arg){
-                V(e,tm);
+            for (Function func : dtFunction){
+                if (func.id.equals(c.id)){
+                    check (c.arg.size() == func.params.size(),
+                            "Arguments and Parameters are different size.");
+                    for(int i = 0; i < c.arg.size(); i++){
+                        Type ti =((Type)func.params.get(i).t);
+                        Type tj = typeOf(c.arg.get(i),tm); 
+                        check(ti.equals(tj)
+                                , func.params.get(i).t + " is not equal to " + typeOf(c.arg.get(i),tm));
+                    }
+                }
             }
         }
         throw new IllegalArgumentException("should never reach here");
@@ -182,6 +192,18 @@ public class StaticTypeCheck {
             ExpressionCall c = (ExpressionCall)e;
             check(!(functionMap.get(new Variable(c.id))).equals(Type.VOID),
                     "Expression Calls must have a return type.");
+            for (Function func : dtFunction){
+                if (func.id.equals(c.id)){
+                    check (c.arg.size() == func.params.size(),
+                            "Arguments and Parameters are different size.");
+                    for(int i = 0; i < c.arg.size(); i++){
+                        Type ti =((Type)func.params.get(i).t);
+                        Type tj = typeOf(c.arg.get(i),tm); 
+                        check(ti.equals(tj)
+                                , func.params.get(i).t + " is not equal to " + typeOf(c.arg.get(i),tm));
+                    }
+                }
+            }
             return;
         }
         if (e instanceof Binary) {
