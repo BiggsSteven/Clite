@@ -178,6 +178,12 @@ public class StaticTypeCheck {
             check( typeOf(a.index, tm) == Type.INT, "invalid array reference: " + a);
             return;
         }
+        if (e instanceof ExpressionCall){
+            ExpressionCall c = (ExpressionCall)e;
+            check(!(functionMap.get(new Variable(c.id))).equals(Type.VOID),
+                    "Expression Calls must have a return type.");
+            return;
+        }
         if (e instanceof Binary) {
             Binary b = (Binary) e;
             Type typ1 = typeOf(b.term1, tm);
@@ -243,6 +249,11 @@ public class StaticTypeCheck {
             ArrayRef a = (ArrayRef)e;
             check (tm.containsKey(a), "undefined array reference: " + a);
             return (Type) tm.get(a);
+        }
+        if (e instanceof ExpressionCall){
+            ExpressionCall c = (ExpressionCall)e;
+            check (functionMap.containsKey(new Variable(c.id)), "undefined variable: " + c.id);
+            return (Type) functionMap.get(new Variable(c.id));
         }
         if (e instanceof Binary) {
             Binary b = (Binary)e;
