@@ -1,8 +1,10 @@
 int h, i;
 
-void A(int x, int y) {
-	bool i,  j;
-	B(h);
+int A(int x, int y) {
+	int i,  j;
+	i = 2;
+	j = 3;
+	return i;
 }
 
 void B(int w) {
@@ -14,6 +16,5 @@ void B(int w) {
 int main () {
 	int a, b;
 	h = 5; a = 3; b = 2;
-	A(a, b);
 }
 

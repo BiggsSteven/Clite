@@ -8,6 +8,7 @@
 package clite;
 
 public class StaticTypeCheck {
+    private static boolean isReturning = false;
 
     public static TypeMap typing (Declarations d) {
         TypeMap map = new TypeMap();
@@ -40,17 +41,33 @@ public class StaticTypeCheck {
             }
     }
     
-    public static void V (Function f , TypeMap GM){
-        //Rule 6.2
+    public static void V (Function f){
+        
         Declarations ds = new Declarations();
         ds.addAll(f.params);
         ds.addAll(f.locals);
         V(ds); 
-        
-        
     }
     
-    public static void V (Program p, TypeMap GM) {
+    public static void V (Functions f, TypeMap tm) {
+        for (Function func : f) {
+            TypeMap functionMap = new TypeMap();
+            functionMap.putAll(tm);
+            functionMap.putAll(typing(func.params));
+            functionMap.putAll(typing(func.locals));
+            
+            V(func,f, functionMap);
+        }
+    }
+    public static void V(Function f, Functions fs, TypeMap tm){
+        isReturning = false;
+        
+        for (int j=0; j < f.body.members.size(); j++) {
+            Statement s = (Statement) f.body.members.get(j);
+        }
+    }
+    
+    public static void V(Program p, TypeMap GM) {
         //Rule 6.1
         Declarations ds = new Declarations();
         ds.addAll(p.globals);
@@ -59,12 +76,12 @@ public class StaticTypeCheck {
             ds.add(new VariableDecl(fl, p.functions.get(i).type));
         }
         V(ds);
-        
-        
+        //Rule 6.2
         for (Function func : p.functions){
-            V(func, GM);
+            V(func);
         }
-        
+        //Rule 6.3
+        V(p.functions,GM);
     }
 
     public static void V (Statement s, TypeMap tm) {
@@ -112,6 +129,12 @@ public class StaticTypeCheck {
             for (int j=0; j < b.members.size(); j++)
                 V((Statement)(b.members.get(j)), tm);
             return;
+        }
+        if (s instanceof StatementCall) {
+            StatementCall c = (StatementCall)s;
+            for(Expression e : c.arg){
+                V(e,tm);
+            }
         }
         throw new IllegalArgumentException("should never reach here");
     }
@@ -220,16 +243,16 @@ public class StaticTypeCheck {
         throw new IllegalArgumentException("should never reach here");
     }
 
-    public static void main(String args[]) {
-    	System.out.println("Begin parsing... " + args[0]);
-        Parser parser  = new Parser(new Lexer(args[0]));
-        Program prog = parser.program();
-        prog.display();           // display abstract syntax tree
-        System.out.println("\nBegin type checking...");
-        System.out.println("\nType map:");
-        TypeMap map = typing(prog.decpart);
-        map.display();
-        V(prog);
-    } //main
+//    public static void main(String args[]) {
+//    	System.out.println("Begin parsing... " + args[0]);
+//        Parser parser  = new Parser(new Lexer(args[0]));
+//        Program prog = parser.program();
+//        prog.display();           // display abstract syntax tree
+//        System.out.println("\nBegin type checking...");
+//        System.out.println("\nType map:");
+//        TypeMap map = typing(prog.decpart);
+//        map.display();
+//        V(prog);
+//    } //main
 
 } // class StaticTypeCheck
