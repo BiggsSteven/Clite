@@ -36,12 +36,35 @@ public class StaticTypeCheck {
                 Declaration dj = d.get(j);
                 check( ! (di.v.equals(dj.v)),
                        "duplicate declaration: " + dj.v);
+                //System.out.println(di.v + " = " + dj.v);
             }
     }
-
-    public static void V (Program p) {
-        V (p.decpart);
-        V (p.body, typing (p.decpart));
+    
+    public static void V (Function f , TypeMap GM){
+        //Rule 6.2
+        Declarations ds = new Declarations();
+        ds.addAll(f.params);
+        ds.addAll(f.locals);
+        V(ds); 
+        
+        
+    }
+    
+    public static void V (Program p, TypeMap GM) {
+        //Rule 6.1
+        Declarations ds = new Declarations();
+        ds.addAll(p.globals);
+        for (int i=0; i<p.functions.size(); i++) {
+            Variable fl = new Variable(p.functions.get(i).id);
+            ds.add(new VariableDecl(fl, p.functions.get(i).type));
+        }
+        V(ds);
+        
+        
+        for (Function func : p.functions){
+            V(func, GM);
+        }
+        
     }
 
     public static void V (Statement s, TypeMap tm) {

@@ -16,6 +16,7 @@ public class Main {
         System.out.println("\nBegin type checking...");
         TypeMap map = StaticTypeCheck.typing(prog.globals);
         map.display();
+        
 //
 //        Program out = TypeTransformer.T(prog, map);
 //        System.out.println("\nTransformed Abstract Syntax Tree");
